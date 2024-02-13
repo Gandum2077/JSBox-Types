@@ -542,7 +542,10 @@ declare namespace UiTypes {
     interface ListProps extends ScrollProps {
         style?: number; // 样式 0 ~ 2
         data: string[] | object[];
-        template?: AllViewOptions;
+        template?: {
+            props?: BaseViewProps,
+            views: AllViewOptions[];
+        };
         separatorInset?: JBInsets;
         separatorHidden?: boolean;
         separatorColor?: UIColor;
@@ -589,7 +592,7 @@ declare namespace UiTypes {
     interface MatrixProps extends ScrollProps {
         data: string[] | object[];
         template: {
-            props: BaseViewProps,
+            props?: BaseViewProps,
             views: AllViewOptions[];
         };
         spacing?: number;
