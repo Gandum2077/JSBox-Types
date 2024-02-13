@@ -78,10 +78,10 @@ declare namespace UiTypes {
         touchesEnded?: (sender: T, location: JBPoint, locations: JBPoint[]) => void;
         touchesCancelled?: (sender: T, location: JBPoint, locations: JBPoint[]) => void;
         layoutSubviews?: (sender: T) => void;
+        height?: (sender: T) => number; // 仅能用在matrix的header和footer
     }
 
     interface BaseViewOptions {
-        layout?: (make: MASConstraintMaker, view: AllUIView) => void;
         views?: AllViewOptions[];
     }
 
@@ -129,6 +129,7 @@ declare namespace UiTypes {
     interface ViewOptions extends BaseViewOptions {
         type: "view";
         props: BaseViewProps;
+        layout?: (make: MASConstraintMaker, view: UIView) => void;
         events?: BaseViewEvents;
     }
 
