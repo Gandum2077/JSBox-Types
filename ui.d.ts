@@ -182,8 +182,8 @@ declare namespace UiTypes {
     interface ButtonOptions extends BaseViewOptions {
         type: "button";
         props: ButtonProps;
-        layout?: (make: MASConstraintMaker, view: UIButtonlView) => void;
-        events?: BaseViewEvents<UIButtonlView>;
+        layout?: (make: MASConstraintMaker, view: UIButtonView) => void;
+        events?: BaseViewEvents<UIButtonView>;
     }
 
     interface InputProps extends BaseViewProps {
