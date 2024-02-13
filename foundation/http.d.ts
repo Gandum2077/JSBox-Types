@@ -18,12 +18,12 @@ namespace HttpTypes {
         };
         showsProgress?: boolean;
         backgroundFetch?: boolean;
-        handler?: (response: HttpResponse) => void;
+        handler: (response: HttpResponse) => void;
     }
 
     interface DownloadOptions extends Omit<HttpRequestOptions, "handler"> {
         progress?: (bytesWritten: number, totalBytes: number) => void;
-        handler?: (response: DownloadResponse) => void;
+        handler: (response: DownloadResponse) => void;
     }
 
     interface UploadOptions extends HttpRequestOptions {
@@ -41,13 +41,13 @@ namespace HttpTypes {
         data: string;
         rawData: NSData;
         response: Response;
-        error: NSError;
+        error?: NSError;
     }
 
     interface DownloadResponse {
         data: NSData;
         response: Response;
-        error: NSError;
+        error?: NSError;
     }
 
     interface Response {
@@ -84,12 +84,11 @@ interface Http {
     download(options: Omit<HttpTypes.DownloadOptions, 'handler'>): Promise<HttpTypes.DownloadResponse>;
     upload(options: Omit<HttpTypes.UploadOptions, 'handler'>): Promise<HttpTypes.HttpResponse>;
 
-    startServer(
-        options: {
-            port: number;
-            path: string;
-            handler: (result: HttpTypes.ServerResult) => void
-        }): void;
+    startServer(options: {
+        port: number;
+        path: string;
+        handler: (result: HttpTypes.ServerResult) => void
+    }): void;
     stopServer(): void;
     shorten(options: { url: string; handler: (url: string) => void }): void; // deprecated
     lengthen(options: { url: string; handler: (url: string) => void }): void;

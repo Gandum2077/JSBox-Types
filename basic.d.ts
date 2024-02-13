@@ -634,9 +634,9 @@ interface UIWebView extends UIView {
     stopLoading(): void;
     eval(args: {
         script: text;
-        handler: (result: any, error: NSError) => void;
+        handler: (result: any, error?: NSError) => void;
     }): void;
-    exec(script: string): Promise<{ result: any; error: NSError }>;
+    exec(script: string): Promise<{ result: any; error?: NSError }>;
     notify(args: {
         event: string;
         message: object;

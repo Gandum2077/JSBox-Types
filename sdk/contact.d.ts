@@ -71,12 +71,12 @@ namespace ContactTypes {
         familyName?: string;
         phoneNumbers?: Record<string, string>;
         emails?: Record<string, string>;
-        handler: (resp: { status: number; error: string | null }) => void;
+        handler: (resp: { status: number; error?: NSError }) => void;
     }
 
     interface ContactSaveOptions {
         contact: ContactItem;
-        handler: (resp: { status: number; error: string | null }) => void;
+        handler: (resp: { status: number; error?: NSError }) => void;
     }
 
     interface ContactDeleteOptions {

@@ -15,7 +15,7 @@ namespace NetworkTypes {
         didReceiveUnexpectedReply?: (summary: PingSummary) => void;
         didSendPing?: (summary: PingSummary) => void;
         didTimeout?: (summary: PingSummary) => void;
-        didFail?: (error: any) => void;
+        didFail?: (error: NSError) => void;
         didFailToSendPing?: (response: any) => void;
     }
 

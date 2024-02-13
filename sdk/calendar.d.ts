@@ -27,19 +27,19 @@ namespace CalendarTypes {
         startDate: Date;
         hours?: number;
         notes?: string;
-        handler: (response: { status: number, error: null | NSError }) => void;
+        handler: (response: { status: number, error?: NSError }) => void;
     }
 
     interface SaveOptions {
         event: CalendarItem;
         alarmDate?: Date;
         alarmDates?: Date[];
-        handler: (response: { status: number, error: null | NSError }) => void;
+        handler: (response: { status: number, error?: NSError }) => void;
     }
 
     interface DeleteOptions {
         event: CalendarItem;
-        handler: (response: { status: number, error: null | NSError }) => void;
+        handler: (response: { status: number, error?: NSError }) => void;
     }
 }
 

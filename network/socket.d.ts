@@ -19,7 +19,7 @@ namespace SocketTypes {
 
     interface SocketEventHandlers {
         didOpen?: (sock: Socket) => void;
-        didFail?: (sock: Socket, error: string) => void;
+        didFail?: (sock: Socket, error: NSError) => void;
         didClose?: (sock: Socket, code: number, reason: string, wasClean: boolean) => void;
         didReceiveString?: (sock: Socket, string: string) => void;
         didReceiveData?: (sock: Socket, data: NSData) => void;
@@ -31,8 +31,8 @@ namespace SocketTypes {
         listen(eventHandlers: SocketEventHandlers): void;
         open(): void;
         close(closeOptions?: CloseOptions): void;
-        send(data: string | SendOptions): { result: boolean; error?: string | null };
-        ping(data: NSData): { result: boolean; error?: any };
+        send(data: string | SendOptions): { result: boolean; error?: NSError };
+        ping(data: NSData): { result: boolean; error?: NSError };
         readyState: number; // 0: connecting, 1: open, 2: closing, 3: closed
     }
 }

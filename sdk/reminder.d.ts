@@ -26,17 +26,17 @@ namespace ReminderTypes {
         alarmDates?: Date[];
         notes?: string;
         url?: string;
-        handler: (resp: { status: number; error: string | null }) => void;
+        handler: (resp: { status: number; error?: NSError }) => void;
     }
 
     interface SaveOptions {
         event: ReminderItem;
-        handler: (resp: { status: number; error: string | null }) => void;
+        handler: (resp: { status: number; error?: NSError }) => void;
     }
 
     interface DeleteOptions {
         event: ReminderItem;
-        handler: (resp: { status: number; error: string | null }) => void;
+        handler: (resp: { status: number; error?: NSError }) => void;
     }
 }
 
