@@ -542,10 +542,7 @@ declare namespace UiTypes {
     interface ListProps extends ScrollProps {
         style?: number; // 样式 0 ~ 2
         data: string[] | object[];
-        template: {
-            props: BaseViewProps,
-            views: AllViewOptions[];
-        };
+        template?: AllViewOptions;
         separatorInset?: JBInsets;
         separatorHidden?: boolean;
         separatorColor?: UIColor;
@@ -560,7 +557,7 @@ declare namespace UiTypes {
         reorder?: boolean;
         crossSections?: boolean;
         // hasActiveAction?: boolean;
-        actions: {
+        actions?: {
             title: string;
             color?: UIColor;
             handler: (sender: UIListView, indexPath: NSIndexPath) => void;
