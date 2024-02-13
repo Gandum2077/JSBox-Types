@@ -1,6 +1,6 @@
 {
   "name": "jsbox-types",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "为JSBOX添加TypeScript声明文件。",
   "main": "index.js",
   "scripts": {
