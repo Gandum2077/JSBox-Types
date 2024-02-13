@@ -2,6 +2,12 @@
   "name": "jsbox-types",
   "version": "1.0.4",
   "description": "为JSBOX添加TypeScript声明文件。",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Gandum2077/JSBox-Types"
+  },
+  "homepage": "https://github.com/Gandum2077/JSBox-Types",
+  "bugs": "https://github.com/Gandum2077/JSBox-Types/issues",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
