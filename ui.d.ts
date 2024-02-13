@@ -823,7 +823,7 @@ declare namespace UiTypes {
     }
 
     interface UIPopoverSimpleOptions {
-        sourceView: AllUIView;
+        sourceView: UIView;
         sourceRect?: JBRect; // sender.bounds by default
         directions?: number; // $popoverDirection.up by default
         size?: JSSize; // fits content by default
@@ -832,7 +832,7 @@ declare namespace UiTypes {
     }
 
     interface UIPopoverOptions {
-        sourceView: AllUIView;
+        sourceView: UIView;
         sourceRect?: JBRect; // sender.bounds by default
         directions?: number; // $popoverDirection.any by default
         size?: JSSize; // fits screen width by default
@@ -857,8 +857,8 @@ interface Ui {
     action(options: UiTypes.UIAlertNoHandlerOptions): Promise<{ title: string; index: number }>;
     menu(options: UiTypes.UIMenuOptions): void;
     menu(options: Omit<UiTypes.UIMenuOptions, "handler">): Promise<{ title: string; index: number }>;
-    popover(options: UIPopoverSimpleOptions): Promise<{ title: string; index: number }>;
-    popover(options: UIPopoverOptions): { dismiss: () => void };
+    popover(options: UiTypes.UIPopoverSimpleOptions): Promise<{ title: string; index: number }>;
+    popover(options: UiTypes.UIPopoverOptions): { dismiss: () => void };
     toast(message: string, time?: number): void;
     clearToast(): void;
     success(message: string): void;
@@ -872,7 +872,7 @@ interface Ui {
         html?: string;
         text?: string;
     }): void;
-    create(options: AllViewOptions): void;
+    create(options: UiTypes.AllViewOptions): void;
     window: UIView; // 此处实际效果与文档不符，获取的是RootView
     controller: BBRenderVC;
     title: string;
