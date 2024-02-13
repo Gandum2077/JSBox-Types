@@ -29,7 +29,7 @@ declare namespace UiTypes {
         id?: string;
         height?: number; // 仅用于 accessoryView, keyboardView, header, footer
 
-        theme?: string; // "light" | "dark" | "auto";
+        theme?: "light" | "dark" | "auto";
         alpha?: number;
         bgcolor?: UIColor;
         cornerRadius?: number;
