@@ -29,8 +29,8 @@ interface JBRange {
 }
 
 interface JBBasicValue {
-    jsValue: any;
-    ocValue: any;
+    jsValue(): any;
+    ocValue(): any;
     invoke(...args: any[]): any;
 }
 
@@ -192,10 +192,9 @@ interface MASCompositeConstraint extends JBBasicValue {
     with: MASCompositeConstraint;
 }
 
-interface UIView extends JBBasicValue {
+interface UIBaseView extends JBBasicValue {
     // 唯一标识与基础属性
     id: string;
-    __clsName: string; // 保留内部属性
     theme: string;
 
     // 尺寸与位置属性
@@ -275,36 +274,36 @@ interface UIView extends JBBasicValue {
 
     // 视图操作与事件处理函数
     snapshot: UIImage;
-    add(view: UIView | UiTypes.AllViewOptions): void;
+    add(view: AllUIView | UiTypes.AllViewOptions): void;
     remove(): void;
-    get(key: string): UIView;
-    insertAbove(view: UIView, other: UIView): void;
-    insertBelow(view: UIView, other: UIView): void;
-    insertAtIndex(view: UIView, index: number): void;
+    get(key: string): AllUIView;
+    insertAbove(view: AllUIView, other: AllUIView): void;
+    insertBelow(view: AllUIView, other: AllUIView): void;
+    insertAtIndex(view: AllUIView, index: number): void;
     moveToFront(): void;
     moveToBack(): void;
     sizeToFit(): void;
     scale(scale: number): void;
     snapshotWithScale(scale: number): UIImage;
     rotate(angle: number): void;
-    whenTapped(handler: (sender: UIView) => void): void;
-    whenDoubleTapped(handler: (sender: UIView) => void): void;
+    whenTapped(handler: (sender: AllUIView) => void): void;
+    whenDoubleTapped(handler: (sender: AllUIView) => void): void;
     whenTouched(args: {
         touches: number;
         taps: number;
-        handler: (sender: UIView) => void;
+        handler: (sender: AllUIView) => void;
     }): void;
     addEventHandler(args: {
         events: number;
-        handler: (sender: UIView) => void;
+        handler: (sender: AllUIView) => void;
     }): void; // 此方法只能用于 button, text, input 等本身就支持事件响应的 UI controls
     removeEventHandlers(events: number): void;
     // startLoading: Function;
     // stopLoading: Function;
-    layout(callback: (make: MASConstraintMaker, view: UIView) => void): void;
+    layout(callback: (make: MASConstraintMaker, view: AllUIView) => void): void;
     relayout(): void;
-    updateLayout(callback: (make: MASConstraintMaker, view: UIView) => void): void;
-    remakeLayout(callback: (make: MASConstraintMaker, view: UIView) => void): void;
+    updateLayout(callback: (make: MASConstraintMaker, view: AllUIView) => void): void;
+    remakeLayout(callback: (make: MASConstraintMaker, view: AllUIView) => void): void;
     setNeedsLayout(): void;
     layoutIfNeeded(): void;
     // valueForKey: Function;
@@ -313,18 +312,29 @@ interface UIView extends JBBasicValue {
     // setValueForKeyPath: Function;
 
     // 子视图与层级关系
-    readonly super: UIView;
-    readonly prev: UIView;
-    readonly next: UIView;
+    readonly super: AllUIView;
+    readonly prev: AllUIView;
+    readonly next: AllUIView;
     readonly window: AppWindow; // 需要完全加载后才可用
-    readonly views: UIView[];
+    readonly views: AllUIView[];
 }
 
 interface AppWindow extends Omit<UIView, "id" | "bgcolor"> {
     // 没有id和bgcolor属性
 }
 
-interface UILabelView extends UIView {
+interface UIView extends UIBaseView {
+    ocValue(): {
+        __clsName: "BBRootView";
+        [propertyName: string]: any;
+    };
+}
+
+interface UILabelView extends UIBaseView {
+    ocValue(): {
+        __clsName: "BBLabelView";
+        [propertyName: string]: any;
+    };
     text: string;
     styledText?: UiTypes.StyledTextOptions;
     autoFontSize: boolean;
@@ -336,7 +346,11 @@ interface UILabelView extends UIView {
     shadowColor?: UIColor;
 }
 
-interface UIButtonView extends UIView {
+interface UIButtonView extends UIBaseView {
+    ocValue(): {
+        __clsName: "BBButtonView";
+        [propertyName: string]: any;
+    };
     title?: string;
     titleColor?: UIColor;
     font?: UIFont;
@@ -360,7 +374,11 @@ interface UIButtonView extends UIView {
     state: number;
 }
 
-interface UIInputView extends UIView {
+interface UIInputView extends UIBaseView {
+    ocValue(): {
+        __clsName: "BBTextFieldView";
+        [propertyName: string]: any;
+    };
     type: number; // $kbType
     darkKeyboard?: boolean;
     text: string;
@@ -390,7 +408,11 @@ interface UIInputView extends UIView {
     blur(): void; // 模糊焦点，隐藏键盘
 }
 
-interface UISliderView extends UIView {
+interface UISliderView extends UIBaseView {
+    ocValue(): {
+        __clsName: "BBSliderView";
+        [propertyName: string]: any;
+    };
     value: number;
     min: number;
     max: number;
@@ -410,7 +432,11 @@ interface UISliderView extends UIView {
     effectiveContentHorizontalAlignment: number;
 }
 
-interface UISwitchView extends UIView {
+interface UISwitchView extends UIBaseView {
+    ocValue(): {
+        __clsName: "BBSwitchView";
+        [propertyName: string]: any;
+    };
     on: boolean;
     onColor: UIColor;
     thumbColor?: UIColor;
@@ -426,7 +452,11 @@ interface UISwitchView extends UIView {
     effectiveContentHorizontalAlignment: number;
 }
 
-interface UISpinnerView extends UIView {
+interface UISpinnerView extends UIBaseView {
+    ocValue(): {
+        __clsName: "BBActivityIndicatorView";
+        [propertyName: string]: any;
+    };
     loading: boolean; // 是否加载中
     color: UIColor;
     // style?: number; // 无法复现，可能文档错误或API已废弃
@@ -435,23 +465,35 @@ interface UISpinnerView extends UIView {
     toggle(): void;
 }
 
-interface UIProgressView extends UIView {
+interface UIProgressView extends UIBaseView {
+    ocValue(): {
+        __clsName: "BBProgressView";
+        [propertyName: string]: any;
+    };
     value: number;
     progressColor?: UIColor;
     trackColor: UIColor;
 }
 
 interface UIGalleryView extends UIScrollView {
+    ocValue(): {
+        __clsName: "BBGalleryView";
+        [propertyName: string]: any;
+    };
     itemViews: AllUIView[];
     page: number;
     interval: number;
     pageControl: UIPageControl;
 
-    viewWithIndex(index: number): UIView;
+    viewWithIndex(index: number): AllUIView;
     scrollToPage(index: number): void;
 }
 
-interface UIStepperView extends UIView {
+interface UIStepperView extends UIBaseView {
+    ocValue(): {
+        __clsName: "BBStepperView";
+        [propertyName: string]: any;
+    };
     value: number;
     min: number;
     max: number;
@@ -472,6 +514,10 @@ interface UIStepperView extends UIView {
 }
 
 interface UITextView extends UIScrollView {
+    ocValue(): {
+        __clsName: "BBTextView";
+        [propertyName: string]: any;
+    };
     text: string;
     styledText?: string | UiTypes.StyledTextOptions;
     html: string;
@@ -485,8 +531,8 @@ interface UITextView extends UIScrollView {
     editable: boolean;
     selectable: boolean;
     // insets?: JBInsets; // 文档错误，不可读
-    accessoryView?: UIView;
-    keyboardView?: UIView;
+    accessoryView?: AllUIView;
+    keyboardView?: AllUIView;
 
     focus(): void; // 获取焦点，弹出键盘
     blur(): void; // 模糊焦点，隐藏键盘
@@ -494,7 +540,11 @@ interface UITextView extends UIScrollView {
     returnKeyType: number; // 文档上缺少但实际存在
 }
 
-interface UIImageView extends UIView {
+interface UIImageView extends UIBaseView {
+    ocValue(): {
+        __clsName: "BBAnimatedImageView";
+        [propertyName: string]: any;
+    };
     image: UIImage;
     data: NSData;
     src?: string; // url或者本地路径
@@ -510,6 +560,10 @@ interface UIImageView extends UIView {
 }
 
 interface UIVideoView extends UIWebView {
+    ocValue(): {
+        __clsName: "BBVideoView";
+        [propertyName: string]: any;
+    };
     src: string; // url，如果需要本地路径必须是local://开头
     poster?: string; // 封面图
 
@@ -519,7 +573,11 @@ interface UIVideoView extends UIWebView {
 
 }
 
-interface UIScrollView extends UIView {
+interface UIScrollView extends UIBaseView {
+    ocValue(): {
+        __clsName: "BBScrollView";
+        [propertyName: string]: any;
+    };
     contentOffset: JBPoint;
     contentSize: JBSize;
     alwaysBounceVertical: boolean;
@@ -556,7 +614,11 @@ interface UIScrollView extends UIView {
     indicatorStyle: number; // 文档上缺少但实际存在
 }
 
-interface UIStackView extends UIView {
+interface UIStackView extends UIBaseView {
+    ocValue(): {
+        __clsName: "BBStackView";
+        [propertyName: string]: any;
+    };
     stack: BBStackViewStack;
     axis: number; // $stackViewAxis
     distribution: number; // $stackViewDistribution
@@ -566,7 +628,11 @@ interface UIStackView extends UIView {
     layoutMarginsRelative: boolean;
 }
 
-interface UITabView extends UIView {
+interface UITabView extends UIBaseView {
+    ocValue(): {
+        __clsName: "BBTabView";
+        [propertyName: string]: any;
+    };
     items: string[];
     index: number;
 
@@ -583,7 +649,11 @@ interface UITabView extends UIView {
     enable: Function;
 }
 
-interface UIMenuView extends UIView {
+interface UIMenuView extends UIBaseView {
+    ocValue(): {
+        __clsName: "BBMenuView";
+        [propertyName: string]: any;
+    };
     items: string[];
     index: number;
     dynamicWidth?: boolean;
@@ -599,14 +669,22 @@ interface UIMenuView extends UIView {
     effectiveContentHorizontalAlignment: number;
 }
 
-interface UIMapView extends UIView {
+interface UIMapView extends UIBaseView {
+    ocValue(): {
+        __clsName: "BBMapView";
+        [propertyName: string]: any;
+    };
     location?: {
         lat: number;
         lng: number;
     }
 }
 
-interface UIWebView extends UIView {
+interface UIWebView extends UIBaseView {
+    ocValue(): {
+        __clsName: "BBWebView";
+        [propertyName: string]: any;
+    };
     title: string;
     url: string;
     request?: {
@@ -647,6 +725,10 @@ interface UIWebView extends UIView {
 }
 
 interface UIListView extends UIScrollView {
+    ocValue(): {
+        __clsName: "BBTableView";
+        [propertyName: string]: any;
+    };
     // style?: number; // 不可读
     data: string[] | object[];
     // template // 不可读
@@ -683,6 +765,10 @@ interface UIListView extends UIScrollView {
 }
 
 interface UIMatrixView extends UIScrollView {
+    ocValue(): {
+        __clsName: "BBMatrixView";
+        [propertyName: string]: any;
+    };
     data: string[] | object[];
     // template // 不可读
     // spacing?: number; // 不可读
@@ -715,16 +801,29 @@ interface UIMatrixView extends UIScrollView {
     }): void; // 滚动到指定位置
 }
 
-interface UIBlurView extends UIView { }
+interface UIBlurView extends UIBaseView {
+    ocValue(): {
+        __clsName: "BBBlurView";
+        [propertyName: string]: any;
+    };
+}
 
-interface UIGradientView extends UIView {
+interface UIGradientView extends UIBaseView {
+    ocValue(): {
+        __clsName: "BBGradientView";
+        [propertyName: string]: any;
+    };
     colors: UIColor[];
     locations?: number[];
     startPoint: JBPoint;
     endPoint: JBPoint;
 }
 
-interface UIDatePickerView extends UIView {
+interface UIDatePickerView extends UIBaseView {
+    ocValue(): {
+        __clsName: "BBDatePickerView";
+        [propertyName: string]: any;
+    };
     date: Date;
     min?: Date;
     max?: Date;
@@ -742,15 +841,28 @@ interface UIDatePickerView extends UIView {
     effectiveContentHorizontalAlignment: number;
 }
 
-interface UIPickerView extends UIView {
+interface UIPickerView extends UIBaseView {
+    ocValue(): {
+        __clsName: "BBGenericPickerView";
+        [propertyName: string]: any;
+    };
     items: object[];
     selectedRows: number[];
     data: string[];
 }
 
-interface UICanvasView extends UIView { }
+interface UICanvasView extends UIBaseView {
+    ocValue(): {
+        __clsName: "BBCanvasView";
+        [propertyName: string]: any;
+    };
+}
 
-interface UIMarkdownView extends UIView {
+interface UIMarkdownView extends UIBaseView {
+    ocValue(): {
+        __clsName: "BBMarkdownView";
+        [propertyName: string]: any;
+    };
     content: string;
     style: string;
     scrollEnabled: boolean;
@@ -759,7 +871,11 @@ interface UIMarkdownView extends UIView {
     baseURL: string; // 文档上缺少但实际存在
 }
 
-interface UILottieView extends UIView {
+interface UILottieView extends UIBaseView {
+    ocValue(): {
+        __clsName: "BBLottieView";
+        [propertyName: string]: any;
+    };
     json: object; // 只写属性，可用于加载 Lottie 动画
     data: NSData; // 只写属性，可用于加载 Lottie 动画
     src: string; // 文档错误，并非只写属性
@@ -796,6 +912,10 @@ interface UILottieView extends UIView {
 }
 
 interface UIChartView extends UIWebView {
+    ocValue(): {
+        __clsName: "BBChartsView";
+        [propertyName: string]: any;
+    };
     render(data: object): void;
     dispatchAction(data: object): void;
     getWidth(): Promise<number>;
@@ -811,6 +931,10 @@ interface UIChartView extends UIWebView {
 }
 
 interface UICodeView extends UITextView {
+    ocValue(): {
+        __clsName: "BBCodeView";
+        [propertyName: string]: any;
+    };
     // language?: string; // 不可读
     // theme: string; UIView中有theme属性，但含义改变，指编辑器主题
     // adjustInsets?: boolean; // 不可读
@@ -824,7 +948,11 @@ interface UICodeView extends UITextView {
 
 // 不存在UIRuntimeView，因为Runtime渲染出来就是 Runtime 生成的组件本身
 
-interface UIPageControl extends UIView {
+interface UIPageControl extends UIBaseView {
+    ocValue(): {
+        __clsName: "UIPageControl";
+        [propertyName: string]: any;
+    };
     enabled: boolean; // 文档上缺少但实际存在，表示是否可用
     touchInside: boolean; // 以下属性文档上缺少但实际存在，意义不明
     selected: boolean;
@@ -844,7 +972,7 @@ type AllUIView = UILabelView | UIButtonView | UIInputView | UISliderView | UISwi
 
 interface BBStackViewStack extends JBBasicValue {
     __clsName: string;
-    views: UIView[],
+    views: AllUIView[],
     add(view: UIView): void; // 不能添加View定义
     insert(view: UIView, atIndex: number): void;
     remove(view: UIView): void;
