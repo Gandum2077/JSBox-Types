@@ -25,9 +25,33 @@ declare namespace UiTypes {
         }[];
     }
 
+    interface NavButtonOptions {
+        title?: string;
+        image?: UIImage;
+        icon?: string;
+        symbol?: string;
+        menu?: ContextMenuOptions;
+        handler: (sender: UIView) => void; // 此处sender为UIButtonBarButton，不单独定义了
+    }
+
+    interface ContextMenuOptions {
+        title?: string;
+        pullDown?: boolean; // Pull-Down 菜单，短按触发，不会背景模糊。navButton上必为Pull-Down 菜单
+        asPrimary?: boolean; // 是否短按触发
+        items: {
+            title?: string;
+            inline?: boolean;
+            symbol?: string;
+            destructive?: boolean;
+            handler: (sender: UIView) => void; // 此处sender为来源View
+            handler: (sender: UIListView | UIMatrixView, indexPath: NSIndexPath) => void; // 仅用于List和Matrix
+        }[];
+    }
+
     interface BaseViewProps {
         id?: string;
         height?: number; // 仅用于 accessoryView, keyboardView, header, footer
+        selectable?: boolean; // 仅用于List的静态cells
 
         theme?: "light" | "dark" | "auto";
         alpha?: number;
@@ -58,6 +82,8 @@ declare namespace UiTypes {
         accessibilityHint?: string;
         accessibilityValue?: string;
         accessibilityCustomActions?: UIAccessibilityCustomAction[]
+
+        menu?: ContextMenuOptions;
 
     }
 
@@ -110,6 +136,9 @@ declare namespace UiTypes {
         homeIndicatorHidden?: boolean;
         clipsToSafeArea?: boolean;
         keyCommands?: KeyCommand[];
+
+        navButtons: NavButtonOptions[];
+        titleView: AllViewOptions;
     }
 
     interface RootViewEvents extends BaseViewEvents {
@@ -424,7 +453,7 @@ declare namespace UiTypes {
     }
 
     interface StackProps extends BaseViewProps {
-        stack: {views: AllViewOptions[]};
+        stack: { views: AllViewOptions[] };
         axis?: number; // $stackViewAxis
         distribution?: number; // $stackViewDistribution
         alignment?: number; // $stackViewAlignment
@@ -524,11 +553,11 @@ declare namespace UiTypes {
         didReceiveServerRedirect?: (sender: T2, navigation: WKNavigation) => void;
         didFinish?: (sender: T2, navigation: WKNavigation) => void;
         didFail?: (sender: T2, navigation: WKNavigation, error: NSError | null) => void;
-        didSendRequest?: (request: { 
-            method: string; 
-            url: string; 
-            header: Record<string, string>; 
-            body: any 
+        didSendRequest?: (request: {
+            method: string;
+            url: string;
+            header: Record<string, string>;
+            body: any
         }) => void;
         [customEvent: string]: ((...args: any[]) => void) | undefined;
     }
@@ -779,12 +808,12 @@ declare namespace UiTypes {
         events?: BaseViewEvents;
     }
 
-    type AllViewOptions = ViewOptions | LabelOptions | ButtonOptions | InputOptions | SliderOptions 
-    | SwitchOptions | SpinnerOptions | ProgressOptions | GalleryOptions | StepperOptions
-    | TextOptions | ImageOptions | VideoOptions | ScrollOptions | StackOptions 
-    | TabOptions | MenuOptions | MapOptions | WebOptions | ListOptions | MatrixOptions
-    | BlurOptions | GradientOptions | DatePickerOptions | PickerOptions | CanvasOptions
-    | MarkdownOptions | LottieOptions | ChartOptions | CodeOptions | RuntimeOptions;
+    type AllViewOptions = ViewOptions | LabelOptions | ButtonOptions | InputOptions | SliderOptions
+        | SwitchOptions | SpinnerOptions | ProgressOptions | GalleryOptions | StepperOptions
+        | TextOptions | ImageOptions | VideoOptions | ScrollOptions | StackOptions
+        | TabOptions | MenuOptions | MapOptions | WebOptions | ListOptions | MatrixOptions
+        | BlurOptions | GradientOptions | DatePickerOptions | PickerOptions | CanvasOptions
+        | MarkdownOptions | LottieOptions | ChartOptions | CodeOptions | RuntimeOptions;
 
     interface UIAnimationOptions {
         duration: number;
@@ -842,13 +871,17 @@ declare namespace UiTypes {
 }
 
 interface Ui {
-    render(options: {
+    render(options: string | {
         props?: UiTypes.RootViewPrefs;
         views: UiTypes.AllViewOptions[];
         events?: UiTypes.RootViewEvents;
     }): void;
-    push(): void;
-    animation(args: UIAnimationOptions): void;
+    push(options: string | {
+        props?: UiTypes.RootViewPrefs;
+        views: UiTypes.AllViewOptions[];
+        events?: UiTypes.RootViewEvents;
+    }): void;
+    animation(args: UiTypes.UIAnimationOptions): void;
     pop(): void;
     popToRoot(): void;
     get(id: string): AllUIView;
