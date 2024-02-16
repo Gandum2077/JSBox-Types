@@ -936,7 +936,7 @@ interface Ui {
     create(options: UiTypes.LottieOptions): UILottieView;
     create(options: UiTypes.ChartOptions): UIChartView;
     create(options: UiTypes.CodeOptions): UICodeView;
-    create(options: UiTypes.RuntimeOptions): UIView;
+    create(options: UiTypes.RuntimeOptions): AllUIView;
     window: UIView; // 此处实际效果与文档不符，获取的是RootView
     controller: BBRenderVC;
     title: string;

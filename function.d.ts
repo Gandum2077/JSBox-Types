@@ -13,7 +13,7 @@ declare function $color(DarkModeOptions: {
     dark: string;
     black?: string;
 }): UIColor;
-declare function $color(lightColorName: string, darkColorName: string): UIColor;
+declare function $color(lightColor: string | UIColor, darkColor: string | UIColor): UIColor;
 declare function $rgb(red: number, green: number, blue: number): UIColor;
 declare function $rgba(red: number, green: number, blue: number, alpha: number): UIColor;
 declare function $font(size: number): UIFont;
