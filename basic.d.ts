@@ -964,7 +964,7 @@ interface UIPageControl extends UIBaseView {
     effectiveContentHorizontalAlignment: number;
 }
 
-type AllUIView = UILabelView | UIButtonView | UIInputView | UISliderView | UISwitchView 
+type AllUIView = UIView | UILabelView | UIButtonView | UIInputView | UISliderView | UISwitchView 
 | UISpinnerView | UIProgressView | UIGalleryView | UIStepperView | UITextView | UIImageView 
 | UIVideoView | UIScrollView | UIStackView | UITabView | UIMenuView | UIMapView | UIWebView 
 | UIListView | UIMatrixView | UIBlurView | UIGradientView | UIDatePickerView | UIPickerView 

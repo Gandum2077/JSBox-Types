@@ -87,7 +87,7 @@ declare namespace UiTypes {
 
     }
 
-    interface BaseViewEvents<T = UIView> {
+    interface BaseViewEvents<T = UIBaseView> {
         ready?: (sender: T) => void;
         tapped?: (sender: T) => void;
         pencilTapped?: (info: {
@@ -194,15 +194,6 @@ declare namespace UiTypes {
         image?: UIImage;
         icon?: UIImage; // 但是必须使用 $icon 生成的图片
         type?: number; // $btnType
-        menu?: { // 为 button 类型支持 Pull-Down 菜单
-            title?: string;
-            pullDown: true;
-            asPrimary?: boolean;
-            items: {
-                title: string;
-                handler: (sender: UIButtonView) => void; // sender为button
-            }
-        }[];
         contentEdgeInsets?: JBInsets;
         titleEdgeInsets?: JBInsets;
         imageEdgeInsets?: JBInsets;
@@ -814,6 +805,11 @@ declare namespace UiTypes {
         | TabOptions | MenuOptions | MapOptions | WebOptions | ListOptions | MatrixOptions
         | BlurOptions | GradientOptions | DatePickerOptions | PickerOptions | CanvasOptions
         | MarkdownOptions | LottieOptions | ChartOptions | CodeOptions | RuntimeOptions;
+
+    type AllViewTypes = "view" | "label" | "button" | "input" | "slider" | "switch" | "spinner" | "progress"
+        | "gallery" | "stepper" | "text" | "image" | "video" | "scroll" | "stack" | "tab" | "menu"
+        | "map" | "web" | "list" | "matrix" | "blur" | "gradient" | "date-picker" | "picker" | "canvas"
+        | "markdown" | "lottie" | "chart" | "code" | "runtime";
 
     interface UIAnimationOptions {
         duration: number;
