@@ -461,7 +461,7 @@ declare namespace UiTypes {
     }
 
     interface TabProps extends BaseViewProps {
-        items: string[];
+        items?: string[];
         index?: number; // 初始选中
     }
 
@@ -477,7 +477,7 @@ declare namespace UiTypes {
     }
 
     interface MenuProps extends BaseViewProps {
-        items: string[];
+        items?: string[];
         index?: number; // 初始选中
         dynamicWidth?: boolean; // dynamic item width, default is false
     }

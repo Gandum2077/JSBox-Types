@@ -253,7 +253,7 @@ interface UIBaseView extends JBBasicValue {
     smoothCorners: boolean; // 圆角是否使用平滑曲线
     smoothRadius: number;
     radius: number;
-    info: object; // 用于绑定一些信息，例如上下文参数，可写入自定义内容
+    info: { [key: string]: any }; // 用于绑定一些信息，例如上下文参数，可写入自定义内容
     // circular: boolean; // 文档错误，该属性在UIView中不存在，属于只写属性
 
     // 触摸与交互属性
@@ -730,7 +730,7 @@ interface UIListView extends UIScrollView {
         [propertyName: string]: any;
     };
     // style?: number; // 不可读
-    data: string[] | object[];
+    data: string[] | any[];
     // template // 不可读
     // separatorInset?: JBInsets; // 不可读
     separatorHidden: boolean;
@@ -769,7 +769,7 @@ interface UIMatrixView extends UIScrollView {
         __clsName: "BBMatrixView";
         [propertyName: string]: any;
     };
-    data: string[] | object[];
+    data: string[] | any[];
     // template // 不可读
     // spacing?: number; // 不可读
     // itemSize?: JSSize; // 不可读
