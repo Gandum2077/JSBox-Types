@@ -53,7 +53,7 @@ declare namespace UiTypes {
         height?: number; // 仅用于 accessoryView, keyboardView, header, footer
         selectable?: boolean; // 仅用于List的静态cells
 
-        theme?: "light" | "dark" | "auto";
+        theme?: string;
         alpha?: number;
         bgcolor?: UIColor;
         cornerRadius?: number;
@@ -770,7 +770,7 @@ declare namespace UiTypes {
         events?: ChartEvents;
     }
 
-    interface CodeProps extends Omit<TextProps, "theme"> {
+    interface CodeProps extends TextProps {
         language?: string;
         theme?: string;
         darkKeyboard?: boolean; // 是否使用黑色键盘
@@ -877,7 +877,7 @@ interface Ui {
         views: UiTypes.AllViewOptions[];
         events?: UiTypes.RootViewEvents;
     }): void;
-    animation(args: UiTypes.UIAnimationOptions): void;
+    animate(args: UiTypes.UIAnimationOptions): void;
     pop(): void;
     popToRoot(): void;
     get<T extends AllUIView>(id: string): T;

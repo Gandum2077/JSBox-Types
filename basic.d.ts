@@ -121,9 +121,9 @@ interface MASViewConstraint extends JBBasicValue {
     priorityToHigh: MASViewConstraint;
 
     // 约束操作（Constraint Operations）相关属性
-    equalTo: (target: number | MASViewConstraint | MASViewAttribute | UIView) => MASViewConstraint;
-    lessThanOrEqualTo: (target: number | MASViewConstraint | MASViewAttribute | UIView) => MASViewConstraint;
-    greaterThanOrEqualTo: (target: number | MASViewConstraint | MASViewAttribute | UIView) => MASViewConstraint;
+    equalTo: (target: number | MASViewConstraint | MASViewAttribute | AllUIView) => MASViewConstraint;
+    lessThanOrEqualTo: (target: number | MASViewConstraint | MASViewAttribute | AllUIView) => MASViewConstraint;
+    greaterThanOrEqualTo: (target: number | MASViewConstraint | MASViewAttribute | AllUIView) => MASViewConstraint;
     offset: (value: number) => MASViewConstraint;
     inset: (value: number) => MASViewConstraint;
     insets: (value: JBInsets) => MASViewConstraint;
@@ -183,9 +183,9 @@ interface MASCompositeConstraint extends JBBasicValue {
     sizeOffset: (value: JBSize) => MASCompositeConstraint;
 
     // Relational Constraints
-    equalTo: (value: MASCompositeConstraint | JBPoint | JBSize | JBInsets | UIView) => MASCompositeConstraint;
-    greaterThanOrEqualTo: (value: MASCompositeConstraint | JBPoint | JBSize | JBInsets | UIView) => MASCompositeConstraint;
-    lessThanOrEqualTo: (value: MASCompositeConstraint | JBPoint | JBSize | JBInsets | UIView) => MASCompositeConstraint;
+    equalTo: (value: MASCompositeConstraint | JBPoint | JBSize | JBInsets | AllUIView) => MASCompositeConstraint;
+    greaterThanOrEqualTo: (value: MASCompositeConstraint | JBPoint | JBSize | JBInsets | AllUIView) => MASCompositeConstraint;
+    lessThanOrEqualTo: (value: MASCompositeConstraint | JBPoint | JBSize | JBInsets | AllUIView) => MASCompositeConstraint;
 
     // Others
     and: MASCompositeConstraint;
