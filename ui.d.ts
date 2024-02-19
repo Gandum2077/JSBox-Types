@@ -735,7 +735,7 @@ declare namespace UiTypes {
     }
 
     interface LottieProps extends BaseViewProps {
-        json?: string;
+        json?: { [key: string]: any };
         data?: NSData;
         src?: string; // url或者本地路径
         // playing?: boolean;
@@ -789,7 +789,7 @@ declare namespace UiTypes {
     }
 
     interface RuntimeProps extends BaseViewProps {
-        view: object; // 此处是使用 Runtime 生成的 view，无法定义
+        view?: any; // 此处是使用 Runtime 生成的 view，无法定义
     }
 
     interface RuntimeOptions extends BaseViewOptions {

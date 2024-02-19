@@ -785,7 +785,7 @@ interface UIMatrixView extends UIScrollView {
     // footer // 与UIListView不同，footer 属性不可读
     reorder: boolean;
     // actions // 不可读
-
+    reload(): void; // 重新加载
     object(indexPath: NSIndexPath): object; // 返回在 indexPath 位置的数据
     insert(args: {
         // indexPath 和 index 可选其一，value 要符合 data 元素的定义
