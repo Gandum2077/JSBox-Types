@@ -53,9 +53,9 @@ declare const $zero: {
 };
 
 declare const $layout: {
-    fill: (make: MASConstraintMaker, view: UIView) => void;
-    fillSafeArea: (make: MASConstraintMaker, view: UIView) => void;
-    center: (make: MASConstraintMaker, view: UIView) => void;
+    fill: (make: MASConstraintMaker, view: AllUIView) => void;
+    fillSafeArea: (make: MASConstraintMaker, view: AllUIView) => void;
+    center: (make: MASConstraintMaker, view: AllUIView) => void;
 };
 
 declare const $lineCap: {
