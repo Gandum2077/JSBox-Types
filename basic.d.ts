@@ -982,7 +982,7 @@ interface BBStackViewStack extends JBBasicValue {
 
 interface BBRenderVC extends JBBasicValue {
     dismiss(): void;
-    view: AllUIView[];
+    view: AllUIView;
     __clsName: string;
 }
 

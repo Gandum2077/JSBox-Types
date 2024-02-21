@@ -137,8 +137,8 @@ declare namespace UiTypes {
         clipsToSafeArea?: boolean;
         keyCommands?: KeyCommand[];
 
-        navButtons: NavButtonOptions[];
-        titleView: AllViewOptions;
+        navButtons?: NavButtonOptions[];
+        titleView?: AllViewOptions;
     }
 
     interface RootViewEvents extends BaseViewEvents {
