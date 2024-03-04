@@ -38,7 +38,7 @@ namespace HttpTypes {
     }
 
     interface HttpResponse {
-        data: string;
+        data: any;
         rawData: NSData;
         response: Response;
         error?: NSError;
