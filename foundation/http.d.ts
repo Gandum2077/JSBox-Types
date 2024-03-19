@@ -4,7 +4,7 @@ namespace HttpTypes {
     interface HttpRequestOptions {
         method?: string;
         url: string;
-        header?: Record<string, string>;
+        header?: Record<string, any>;
         body?: Record<string, any> | NSData;
         timeout?: number;
         form?: Record<string, any>;

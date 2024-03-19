@@ -16,17 +16,17 @@ namespace ClipboardTypes {
 }
 
 interface Clipboard {
-    text: string;
-    image: NSData; // 请注意返回的是二进制数据
+    text?: string;
+    image?: NSData; // 请注意返回的是二进制数据
     items: object[];
     phoneNumbers: string[];
-    phoneNumber: string;
+    phoneNumber?: string;
     links: string[];
-    link: string;
+    link?: string;
     emails: string[];
-    email: string;
+    email?: string;
     dates: Date[];
-    date: Date;
+    date?: Date;
 
     setTextLocalOnly(text: string): void;
     set(item: ClipboardTypes.ClipboardItem): void;
