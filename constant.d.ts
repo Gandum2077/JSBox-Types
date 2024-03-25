@@ -267,3 +267,17 @@ declare const $widgetFamily: {
     accessoryRectangular: 6;
     accessoryInline: 7;
 };
+
+declare const NSDictionary: any;
+declare const NSMutableDictionary: any;
+declare const NSArray: any;
+declare const NSMutableArray: any;
+declare const NSSet: any;
+declare const NSMutableSet: any;
+declare const NSString: any;
+declare const NSMutableString: any;
+declare const NSData: any;
+declare const NSMutableData: any;
+declare const NSNumber: any;
+declare const NSURL: any;
+declare const NSEnumerator: any;
