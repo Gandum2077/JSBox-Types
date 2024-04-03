@@ -562,7 +562,7 @@ declare namespace UiTypes {
 
     interface ListProps extends ScrollProps {
         style?: number; // 样式 0 ~ 2
-        data: string[] | object[];
+        data?: any;
         template?: {
             props?: BaseViewProps,
             views: AllViewOptions[];
