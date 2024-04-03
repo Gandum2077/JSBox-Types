@@ -2,6 +2,7 @@
 
 namespace InputTypes {
     interface TextOptions {
+        text?: string; // 文档中未提及，但实际可用
         type?: number; // $kbType
         placeholder?: string;
         handler: (text: string) => void;
