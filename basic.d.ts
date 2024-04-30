@@ -717,7 +717,7 @@ interface UIWebView extends UIBaseView {
     exec(script: string): Promise<{ result: any; error?: NSError }>;
     notify(args: {
         event: string;
-        message: object;
+        message: any;
     }): void;
 
     scrollView: UIScrollView; // 文档上缺少但实际存在
