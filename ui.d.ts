@@ -849,7 +849,7 @@ declare namespace UiTypes {
     }
 
     interface UIPopoverSimpleOptions {
-        sourceView: UIView;
+        sourceView: AllUIView;
         sourceRect?: JBRect; // sender.bounds by default
         directions?: number; // $popoverDirection.up by default
         size?: JSSize; // fits content by default
@@ -858,7 +858,7 @@ declare namespace UiTypes {
     }
 
     interface UIPopoverOptions {
-        sourceView: UIView;
+        sourceView: AllUIView;
         sourceRect?: JBRect; // sender.bounds by default
         directions?: number; // $popoverDirection.any by default
         size?: JSSize; // fits screen width by default
