@@ -592,12 +592,12 @@ declare namespace UiTypes {
         swipeEnabled?: (sender: UIListView, indexPath: NSIndexPath) => boolean;
         rowHeight?: (sender: UIListView, indexPath: NSIndexPath) => number;
         sectionTitleHeight?: (sender: UIListView, section: number) => number;
-        didSelect?: (sender: UIListView, indexPath: NSIndexPath, data: object) => void;
-        didLongPress?: (sender: UIListView, indexPath: NSIndexPath, data: object) => void;
+        didSelect?: (sender: UIListView, indexPath: NSIndexPath, data: any) => void;
+        didLongPress?: (sender: UIListView, indexPath: NSIndexPath, data: any) => void;
         forEachItem?: (sender: UIListView, indexPath: NSIndexPath) => void;
         reorderBegan?: (indexPath: NSIndexPath) => void;
         reorderMoved?: (from: NSIndexPath, to: NSIndexPath) => void;
-        reorderFinished?: (data: object) => void;
+        reorderFinished?: (data: any) => void;
         canMoveItem?: (sender: UIListView, indexPath: NSIndexPath) => boolean;
         didReachBottom?: (sender: UIListView) => void;
     }
@@ -632,14 +632,14 @@ declare namespace UiTypes {
     }
 
     interface MatrixEvents extends ScrollEvents<UIMatrixView> {
-        didSelect?: (sender: UIMatrixView, indexPath: NSIndexPath, data: object) => void;
-        didLongPress?: (sender: UIMatrixView, indexPath: NSIndexPath, data: object) => void;
+        didSelect?: (sender: UIMatrixView, indexPath: NSIndexPath, data: any) => void;
+        didLongPress?: (sender: UIMatrixView, indexPath: NSIndexPath, data: any) => void;
         forEachItem?: (sender: UIMatrixView, indexPath: NSIndexPath) => void;
         highlighted?: (sender: UIMatrixView) => void;
         itemSize?: (sender: UIMatrixView, indexPath: NSIndexPath) => void;
         reorderBegan?: (indexPath: NSIndexPath) => void;
         reorderMoved?: (from: NSIndexPath, to: NSIndexPath) => void;
-        reorderFinished?: (data: object) => void;
+        reorderFinished?: (data: any) => void;
         canMoveItem?: (sender: UIMatrixView, indexPath: NSIndexPath) => boolean;
         didReachBottom?: (sender: UIMatrixView) => void;
     }

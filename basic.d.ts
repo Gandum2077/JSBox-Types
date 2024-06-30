@@ -748,7 +748,7 @@ interface UIListView extends UIScrollView {
     hasActiveAction: boolean; // 是否正在使用 action
     // actions // 不可读
 
-    object(indexPath: NSIndexPath): object; // 返回在 indexPath 位置的数据
+    object(indexPath: NSIndexPath): any; // 返回在 indexPath 位置的数据
     insert(args: {
         // indexPath 和 index 可选其一，value 要符合 data 元素的定义
         indexPath?: NSIndexPath;
@@ -756,7 +756,7 @@ interface UIListView extends UIScrollView {
         value: object
     }): void; // 插入新的数据
     delete(indexPathOrIndex: NSIndexPath | number): void; // 删除指定位置的数据
-    cell(indexPath: NSIndexPath): UIView; // 返回在 indexPath 位置的 cell
+    cell(indexPath: NSIndexPath): AllUIView; // 返回在 indexPath 位置的 cell
     setEditing(editing: boolean): void; // 结束 list 划出的状态
     scrollTo(args: {
         indexPath: NSIndexPath;
@@ -769,7 +769,7 @@ interface UIMatrixView extends UIScrollView {
         __clsName: "BBMatrixView";
         [propertyName: string]: any;
     };
-    data: string[] | any[];
+    data: any;
     // template // 不可读
     // spacing?: number; // 不可读
     // itemSize?: JSSize; // 不可读
@@ -786,15 +786,15 @@ interface UIMatrixView extends UIScrollView {
     reorder: boolean;
     // actions // 不可读
     reload(): void; // 重新加载
-    object(indexPath: NSIndexPath): object; // 返回在 indexPath 位置的数据
+    object(indexPath: NSIndexPath): any; // 返回在 indexPath 位置的数据
     insert(args: {
         // indexPath 和 index 可选其一，value 要符合 data 元素的定义
         indexPath?: NSIndexPath;
         index?: number;
-        value: object
+        value: any
     }): void; // 插入新的数据
     delete(indexPathOrIndex: NSIndexPath | number): void; // 删除指定位置的数据
-    cell(indexPath: NSIndexPath): UIView; // 返回在 indexPath 位置的 cell
+    cell(indexPath: NSIndexPath): AllUIView; // 返回在 indexPath 位置的 cell
     scrollTo(args: {
         indexPath: NSIndexPath;
         animated?: boolean;
@@ -916,8 +916,8 @@ interface UIChartView extends UIWebView {
         __clsName: "BBChartsView";
         [propertyName: string]: any;
     };
-    render(data: object): void;
-    dispatchAction(data: object): void;
+    render(data: any): void;
+    dispatchAction(data: any): void;
     getWidth(): Promise<number>;
     getWidth(handler: (width: number) => void): void;
     getHeight(): Promise<number>;

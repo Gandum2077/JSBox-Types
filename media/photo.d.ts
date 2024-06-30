@@ -6,7 +6,7 @@ namespace PhotoTypes {
         data?: NSData;  // format为data时返回，pick方法可用
         status: boolean;
         filename: string;
-        metadata: object; // 非常复杂的对象，不做类型定义了
+        metadata: any; // 非常复杂的对象，不做类型定义了
     }
 
     interface MultiPhotosResponse {
