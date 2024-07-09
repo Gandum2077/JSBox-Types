@@ -192,7 +192,7 @@ declare namespace UiTypes {
         }; //  对图片进行更详细的设定
         symbol?: string; // SF symbols 名称
         image?: UIImage;
-        icon?: UIImage; // 但是必须使用 $icon 生成的图片
+        icon?: BBFileIcon;
         type?: number; // $btnType
         contentEdgeInsets?: JBInsets;
         titleEdgeInsets?: JBInsets;
@@ -382,7 +382,7 @@ declare namespace UiTypes {
         }; //  对图片进行更详细的设定
         symbol?: string; // SF symbols 名称
         data?: NSData;
-        icon?: UIImage; // 但是必须使用 $icon 生成的图片
+        icon?: BBFileIcon;
     }
 
     interface ImageOptions extends BaseViewOptions {

@@ -31,7 +31,7 @@ declare function $data(content: {
 declare function $image(source: string, scale?: number): UIImage;
 declare function $image(lightModeSource: string | UIImage, darkModeSource: string | UIImage): UIImage;
 declare function $image(source: { light: string; dark: string; }, scale?: number): UIImage;
-declare function $icon(code: string, color?: UIColor, size?: JBSize): UIImage;
+declare function $icon(code: string, color?: UIColor, size?: JBSize): BBFileIcon;
 declare function $accessibilityAction(name: string, handler: () => void): UIAccessibilityCustomAction;
 
 declare function $objc(className: string): any;
