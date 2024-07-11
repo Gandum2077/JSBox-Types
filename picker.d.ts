@@ -29,7 +29,7 @@ interface Picker {
         props: {
             items: any[];
         },
-        handler: (index: number) => void;
+        handler: (data: string[]) => void;
     }): void;
     color(args?: { color: UIColor }): Promise<UIColor>; // 参数为默认颜色
     color(args?: { color: UIColor }, handler: (color: UIColor) => void): void; // 参数为默认颜色
