@@ -1,8 +1,20 @@
 // JSBox Picker API TypeScript Declaration
 
 interface Picker {
-    date(args?: object): Promise<Date>; // 实测参数可能无效
-    data(args?: object): Promise<string[]>; // 实测参数可能无效，本API无效
+    date(args?: {
+        props: {
+            date?: Date;
+            min?: Date;
+            max?: Date;
+            mode?: number;
+            interval: number;
+        }
+    }): Promise<Date>;
+    data(args: {
+        props: {
+            items: any[];
+        }
+    }): Promise<string[]>;
     color(args?: { color: UIColor }): Promise<UIColor>; // 参数为默认颜色
 }
 
