@@ -1,6 +1,62 @@
 // JSBox Network API TypeScript Declaration
 
+// 本模块的官方文档写的比较混乱，以下参杂了一些实测结果
+
 namespace HttpTypes {
+    enum NSURLErrorDomain {
+        NSURLErrorUnknown = -1,
+        NSURLErrorCancelled = -999,
+        NSURLErrorBadURL = -1000,
+        NSURLErrorTimedOut = -1001,
+        NSURLErrorUnsupportedURL = -1002,
+        NSURLErrorCannotFindHost = -1003,
+        NSURLErrorCannotConnectToHost = -1004,
+        NSURLErrorNetworkConnectionLost = -1005,
+        NSURLErrorDNSLookupFailed = -1006,
+        NSURLErrorHTTPTooManyRedirects = -1007,
+        NSURLErrorResourceUnavailable = -1008,
+        NSURLErrorNotConnectedToInternet = -1009,
+        NSURLErrorRedirectToNonExistentLocation = -1010,
+        NSURLErrorBadServerResponse = -1011,
+        NSURLErrorUserCancelledAuthentication = -1012,
+        NSURLErrorUserAuthenticationRequired = -1013,
+        NSURLErrorZeroByteResource = -1014,
+        NSURLErrorCannotDecodeRawData = -1015,
+        NSURLErrorCannotDecodeContentData = -1016,
+        NSURLErrorCannotParseResponse = -1017,
+        NSURLErrorAppTransportSecurityRequiresSecureConnection = -1022,
+        NSURLErrorFileDoesNotExist = -1100,
+        NSURLErrorFileIsDirectory = -1101,
+        NSURLErrorNoPermissionsToReadFile = -1102,
+        NSURLErrorDataLengthExceedsMaximum = -1103,
+        NSURLErrorSecureConnectionFailed = -1200,
+        NSURLErrorServerCertificateHasBadDate = -1201,
+        NSURLErrorServerCertificateUntrusted = -1202,
+        NSURLErrorServerCertificateHasUnknownRoot = -1203,
+        NSURLErrorServerCertificateNotYetValid = -1204,
+        NSURLErrorClientCertificateRejected = -1205,
+        NSURLErrorClientCertificateRequired = -1206,
+        NSURLErrorCannotLoadFromNetwork = -2000,
+        NSURLErrorCannotCreateFile = -3000,
+        NSURLErrorCannotOpenFile = -3001,
+        NSURLErrorCannotCloseFile = -3002,
+        NSURLErrorCannotWriteToFile = -3003,
+        NSURLErrorCannotRemoveFile = -3004,
+        NSURLErrorCannotMoveFile = -3005,
+        NSURLErrorDownloadDecodingFailedMidStream = -3006,
+        NSURLErrorDownloadDecodingFailedToComplete = -3007,
+        NSURLErrorInternationalRoamingOff = -1018,
+        NSURLErrorCallIsActive = -1019,
+        NSURLErrorDataNotAllowed = -1020,
+        NSURLErrorRequestBodyStreamExhausted = -1021,
+        NSURLErrorBackgroundSessionRequiresSharedContainer = -995,
+        NSURLErrorBackgroundSessionInUseByAnotherProcess = -996,
+        NSURLErrorBackgroundSessionWasDisconnected = -997
+    }
+    interface NSURLError extends NSError {
+        code: NSURLErrorDomain;
+    }
+
     interface HttpRequestOptions {
         method?: string;
         url: string;
@@ -16,13 +72,27 @@ namespace HttpTypes {
             HTTPSProxy: string;
             HTTPSPort: number;
         };
-        showsProgress?: boolean;
-        backgroundFetch?: boolean;
         handler: (response: HttpResponse) => void;
     }
 
-    interface DownloadOptions extends Omit<HttpRequestOptions, "handler"> {
-        progress?: (bytesWritten: number, totalBytes: number) => void;
+    interface DownloadOptions {
+        url: string;
+        header?: Record<string, any>;
+        body?: Record<string, any> | NSData;
+        //timeout?: number; // 实测timeout对于$http.download无效
+        form?: Record<string, any>;
+        proxy?: {
+            HTTPEnable: boolean;
+            HTTPProxy: string;
+            HTTPPort: number;
+            HTTPSEnable: boolean;
+            HTTPSProxy: string;
+            HTTPSPort: number;
+        };
+        showsProgress?: boolean;
+        backgroundFetch?: boolean;
+        progress?: (bytesWritten: number, totalBytes: number) => void; // upload/download 中进度回调
+        message?: string; // upload/download 中的提示语
         handler: (response: DownloadResponse) => void;
     }
 
@@ -34,6 +104,8 @@ namespace HttpTypes {
             filename: string;
             "content-type"?: string;
         }>;
+        progress?: (bytesWritten: number, totalBytes: number) => void; // upload/download 中进度回调
+        message?: string; // upload/download 中的提示语
         progress?: (percentage: number) => void;
     }
 
@@ -41,13 +113,13 @@ namespace HttpTypes {
         data: any;
         rawData: NSData;
         response: Response;
-        error?: NSError;
+        error?: NSURLError;
     }
 
     interface DownloadResponse {
         data: NSData;
         response: Response;
-        error?: NSError;
+        error?: NSURLError;
     }
 
     interface Response {
@@ -64,7 +136,7 @@ namespace HttpTypes {
         success: boolean;
         publicServerURL: string;
         url: string;
-        error?: NSError;
+        error?: NSURLError;
         port: number;
     }
 }
