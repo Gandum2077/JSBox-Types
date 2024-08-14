@@ -43,18 +43,7 @@ declare namespace UiTypes {
             inline?: boolean;
             symbol?: string;
             destructive?: boolean;
-            handler: (sender: UIView) => void; // 此处sender为来源View
-        }[];
-    }
-
-    interface ContextMenuOptionsForListMaxtrix {
-        title?: string;
-        items: {
-            title?: string;
-            inline?: boolean;
-            symbol?: string;
-            destructive?: boolean;
-            handler: (sender: UIListView | UIMatrixView, indexPath: NSIndexPath) => void; // 仅用于List和Matrix
+            handler: (sender: AllUIView, indexPath: NSIndexPath) => void; // 此处sender为来源View
         }[];
     }
 
@@ -596,7 +585,6 @@ declare namespace UiTypes {
             color?: UIColor;
             handler: (sender: UIListView, indexPath: NSIndexPath) => void;
         }[];
-        menu?: ContextMenuOptionsForListMaxtrix;
     }
 
     interface ListEvents extends ScrollEvents<UIListView> {
@@ -640,7 +628,6 @@ declare namespace UiTypes {
         header?: AllViewOptions;
         footer?: AllViewOptions;
         reorder?: boolean;
-        menu?: ContextMenuOptionsForListMaxtrix;
     }
 
     interface MatrixEvents extends ScrollEvents<UIMatrixView> {
