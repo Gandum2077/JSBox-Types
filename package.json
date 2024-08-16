@@ -1,6 +1,6 @@
 {
   "name": "jsbox-types",
-  "version": "1.0.33",
+  "version": "1.0.34",
   "description": "为JSBOX添加TypeScript声明文件。",
   "repository": {
     "type": "git",
