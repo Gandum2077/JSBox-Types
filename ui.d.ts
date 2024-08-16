@@ -170,6 +170,7 @@ declare namespace UiTypes {
         align?: number; // $align
         lines?: number;
         autoFontSize?: boolean;
+        lineSpacing?: number; // 文档中缺少但实际上存在，表示行间距
     }
 
     interface LabelOptions extends BaseViewOptions {
