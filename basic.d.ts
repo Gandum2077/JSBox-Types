@@ -735,8 +735,8 @@ interface UIListView extends UIScrollView {
     // separatorInset?: JBInsets; // 不可读
     separatorHidden: boolean;
     separatorColor: UIColor;
-    header: UIView;
-    footer: UIView;
+    header: AllUIView;
+    footer: AllUIView;
     // rowHeight?: number; // 不可读
     // autoRowHeight?: boolean; // 不可读
     // estimatedRowHeight?: number; // 不可读
@@ -748,6 +748,7 @@ interface UIListView extends UIScrollView {
     hasActiveAction: boolean; // 是否正在使用 action
     // actions // 不可读
 
+    reload(): void; // 重新加载（在文档中没有，但实际存在）
     object(indexPath: NSIndexPath): any; // 返回在 indexPath 位置的数据
     insert(args: {
         // indexPath 和 index 可选其一，value 要符合 data 元素的定义
