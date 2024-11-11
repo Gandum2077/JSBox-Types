@@ -276,7 +276,6 @@ declare const NSSet: any;
 declare const NSMutableSet: any;
 declare const NSString: any;
 declare const NSMutableString: any;
-declare const NSData: any;
 declare const NSMutableData: any;
 declare const NSNumber: any;
 declare const NSURL: any;
