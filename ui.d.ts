@@ -38,13 +38,16 @@ declare namespace UiTypes {
         title?: string;
         pullDown?: boolean; // Pull-Down 菜单，短按触发，不会背景模糊。navButton上必为Pull-Down 菜单
         asPrimary?: boolean; // 是否短按触发
-        items: {
-            title?: string;
-            inline?: boolean;
-            symbol?: string;
-            destructive?: boolean;
-            handler: (sender: AllUIView, indexPath: NSIndexPath) => void; // 此处sender为来源View
-        }[];
+        items: ContextMenuSubItem[];
+    }
+
+    interface ContextMenuSubItem {
+        title?: string;
+        symbol?: string;
+        destructive?: boolean;
+        handler?: (sender: AllUIView, indexPath: NSIndexPath) => void; // 此处sender为来源View
+        items?: ContextMenuSubItem[];  // 二级菜单
+        inline?: boolean;  // 二级菜单是否直接显示到当前菜单
     }
 
     interface BaseViewProps {
