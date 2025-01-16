@@ -614,7 +614,7 @@ declare namespace UiTypes {
     }
 
     interface MatrixProps extends ScrollProps {
-        data: string[] | object[];
+        data: any[];
         template: {
             props?: BaseViewProps,
             views: AllViewOptions[];
@@ -699,7 +699,7 @@ declare namespace UiTypes {
     }
 
     interface PickerProps extends BaseViewProps {
-        items: object;
+        items: any;
     }
 
     interface PickerEvents extends BaseViewEvents<UIPickerView> {
@@ -758,7 +758,7 @@ declare namespace UiTypes {
     }
 
     interface ChartProps extends WebProps {
-        options?: object; // options 支持的参数请参考 ECharts 文档
+        options?: any; // options 支持的参数请参考 ECharts 文档
     }
 
     interface ChartEvents extends WebEvents<UIChartView> {

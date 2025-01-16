@@ -34,7 +34,7 @@ namespace SshTypes {
         lastResponse: string;
         requestPty: boolean;
         ptyTerminalType: number;
-        environmentVariables: object;
+        environmentVariables: any;
 
         execute(options: {
             script: string;

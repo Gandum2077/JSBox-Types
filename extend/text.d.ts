@@ -27,7 +27,7 @@ namespace TextTypes {
         readonly name: string;
         readonly quality: number;
         readonly gender: number;
-        readonly audioFileSettings: object;
+        readonly audioFileSettings: any;
     }
 }
 

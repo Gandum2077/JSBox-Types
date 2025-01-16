@@ -16,9 +16,9 @@ namespace ServerTypes {
     interface BaseRequest {
         method: string;
         url: string;
-        headers: object;
+        headers: any;
         path: string;
-        query: object;
+        query: any;
         contentType: string;
         contentLength: number;
         ifModifiedSince: Date;
@@ -35,7 +35,7 @@ namespace ServerTypes {
     interface DataRequest extends BaseRequest {
         data: NSData;
         text: string;
-        json: object;
+        json: any;
     }
 
     interface FileRequest extends BaseRequest {
@@ -77,7 +77,7 @@ namespace ServerTypes {
     interface DataResponse extends BaseResponse {
         text?: string;
         html?: string;
-        json?: object;
+        json?: any;
     }
 
     interface FileResponse extends BaseResponse {
@@ -112,9 +112,9 @@ namespace ServerTypes {
         filter?: (rules: {
             method: string;
             url: string;
-            headers: object;
+            headers: any;
             path: string;
-            query: object;
+            query: any;
         }) => string | { type: string; method: string };
         // 返回类型为字符串default, data, file, multipart, urlencoded，或者一个对象，包含type和method两个属性
         response?: (request: BaseRequest | DataRequest | FileRequest | MultipartRequest) => ResponseOptions;

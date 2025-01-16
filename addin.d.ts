@@ -28,7 +28,7 @@ interface Addin {
     }): void;
 
     delete(name: string): void;
-    run(name: string | { name: string; query?: object }): void;
+    run(name: string | { name: string; query?: any }): void;
     restart(): void;
     replay(): void;
     compile(script: string): string;

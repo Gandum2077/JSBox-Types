@@ -6,7 +6,7 @@ declare namespace ImagekitTypes {
         height: number;
         orientation: number;
         scale: number;
-        props: object; // 非常复杂的对象，不做类型定义了
+        props: any; // 非常复杂的对象，不做类型定义了
     }
 
     interface GIFExtractResult {

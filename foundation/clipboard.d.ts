@@ -18,7 +18,7 @@ namespace ClipboardTypes {
 interface Clipboard {
     text?: string;
     image?: NSData; // 请注意返回的是二进制数据
-    items: object[];
+    items: any[];
     phoneNumbers: string[];
     phoneNumber?: string;
     links: string[];

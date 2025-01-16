@@ -10,7 +10,7 @@ namespace PushTypes {
         repeats?: boolean;
         script?: string;
         height?: number;
-        query?: object;
+        query?: any;
         attachments?: string[];
         renew?: boolean;
         delay?: number;

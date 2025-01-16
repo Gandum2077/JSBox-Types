@@ -19,7 +19,7 @@ namespace DeviceTypes {
     }
 
     interface WifiInfo {
-        SSIDDATA: object;
+        SSIDDATA: any;
         BSSID: string;
         SSID: string;
     }

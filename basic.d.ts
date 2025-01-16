@@ -37,7 +37,7 @@ interface JBBasicValue {
 interface NSError extends JBBasicValue {
     code: number;
     domain: string;
-    userInfo: object;
+    userInfo: any;
     localizedDescription: string;
     localizedFailureReason: string;
     localizedRecoverySuggestion: string;
@@ -754,7 +754,7 @@ interface UIListView extends UIScrollView {
         // indexPath 和 index 可选其一，value 要符合 data 元素的定义
         indexPath?: NSIndexPath;
         index?: number;
-        value: object
+        value: any
     }): void; // 插入新的数据
     delete(indexPathOrIndex: NSIndexPath | number): void; // 删除指定位置的数据
     cell(indexPath: NSIndexPath): AllUIView; // 返回在 indexPath 位置的 cell
@@ -847,7 +847,7 @@ interface UIPickerView extends UIBaseView {
         __clsName: "BBGenericPickerView";
         [propertyName: string]: any;
     };
-    items: object[];
+    items: any[];
     selectedRows: number[];
     data: string[];
 }
@@ -877,7 +877,7 @@ interface UILottieView extends UIBaseView {
         __clsName: "BBLottieView";
         [propertyName: string]: any;
     };
-    json: object; // 只写属性，可用于加载 Lottie 动画
+    json: any; // 只写属性，可用于加载 Lottie 动画
     data: NSData; // 只写属性，可用于加载 Lottie 动画
     src: string; // 文档错误，并非只写属性
     playing: boolean;
@@ -923,7 +923,7 @@ interface UIChartView extends UIWebView {
     getWidth(handler: (width: number) => void): void;
     getHeight(): Promise<number>;
     getHeight(handler: (height: number) => void): void;
-    getOption(): Promise<object>;
+    getOption(): Promise<any>;
     getOption(handler: (option: object) => void): void;
     resize(size: JBSize): void;
     showLoading(): void;

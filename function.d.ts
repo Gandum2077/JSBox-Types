@@ -37,12 +37,12 @@ declare function $accessibilityAction(name: string, handler: () => void): UIAcce
 declare function $objc(className: string): any;
 declare function $define(options: {
     type: string;
-    events?: object;
-    classEvents?: object;
+    events?: any;
+    classEvents?: any;
 }): any;
 declare function $delegate(options: {
     type: string;
-    events?: object;
+    events?: any;
 }): any;
 declare function $block(definition: string, handler: Function): any;
 declare function $defc(...args: string[]): any;

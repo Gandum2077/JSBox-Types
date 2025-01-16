@@ -17,7 +17,7 @@ namespace SafariTypes {
 
 interface Safari {
     open(options: SafariTypes.OpenOptions): void;
-    items: object;
+    items: any;
     inject(script: string): void;
     addReadingItem(options: SafariTypes.ReadingItemOptions): void;
 }

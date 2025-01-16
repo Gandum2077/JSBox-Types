@@ -64,6 +64,13 @@ namespace HttpTypes {
         body?: Record<string, any> | NSData;
         timeout?: number;
         form?: Record<string, any>;
+        files?: {
+            image?: UIImage;
+            data?: NSData;
+            name: string;
+            filename?: string;
+            "content-type"?: string;
+        }[];
         proxy?: {
             HTTPEnable: boolean;
             HTTPProxy: string;
@@ -97,14 +104,6 @@ namespace HttpTypes {
     }
 
     interface UploadOptions extends HttpRequestOptions {
-        files?: Array<{
-            image?: UIImage;
-            data?: NSData;
-            name: string;
-            filename: string;
-            "content-type"?: string;
-        }>;
-        progress?: (bytesWritten: number, totalBytes: number) => void; // upload/download 中进度回调
         message?: string; // upload/download 中的提示语
         progress?: (percentage: number) => void;
     }

@@ -3,7 +3,7 @@
 namespace WidgetTypes {
     interface WidgetEntry {
         date?: Date;
-        info?: object;
+        info?: any;
     }
 
     interface WidgetPolicy {

@@ -30,7 +30,7 @@ namespace ContextTypes {
 }
 
 interface Context {
-    query: object;
+    query: any;
     text: string;
     textItems: string[];
     link: string;
