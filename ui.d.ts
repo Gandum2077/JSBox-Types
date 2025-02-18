@@ -421,7 +421,7 @@ declare namespace UiTypes {
         // tracking?: boolean;
         // dragging?: boolean;
         // decelerating?: boolean;
-        keyboardDismissMode?: number; // 键盘收起模式
+        keyboardDismissMode?: number; // 键盘收起模式: 0: none, 1: on-drag, 2: interactive
         zoomEnabled?: boolean; // 以下是为了创建支持双指缩放的图片
         maxZoomScale?: number; // 最大缩放比例，默认2
         doubleTapToZoom?: boolean; // 双击放大，默认true
@@ -866,6 +866,7 @@ declare namespace UiTypes {
         directions?: number; // $popoverDirection.any by default
         size?: JSSize; // fits screen width by default
         views: AllViewOptions[];
+        dismissed?: () => void;
     }
 }
 

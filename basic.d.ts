@@ -589,7 +589,7 @@ interface UIScrollView extends UIBaseView {
     // contentInset?: JBInsets; // 文档中存在，但实测失效
     // indicatorInsets?: JBInsets; // 文档中存在，但实测失效
 
-    keyboardDismissMode: number; // 键盘收起模式
+    keyboardDismissMode: number; // 键盘收起模式: 0: none, 1: on-drag, 2: interactive
     zoomEnabled: boolean; // 以下是为了创建支持双指缩放的图片
     maxZoomScale: number; // 最大缩放比例，默认2
     zoomScale: number; // 文档上缺少但实际存在
