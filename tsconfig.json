@@ -110,8 +110,5 @@
     "./*.d.ts",
     "./*/*.d.ts",
     "test.ts"
-  ],
-  "files": [
-    "test.ts"
   ]
 }
