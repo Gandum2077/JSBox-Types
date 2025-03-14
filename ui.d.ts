@@ -974,10 +974,10 @@ interface Ui {
   pop(): void;
   popToRoot(): void;
   get<T extends AllUIView>(id: string): T;
-  alert(options: UiTypes.UIAlertOptions | string): void;
   alert(
     options: UiTypes.UIAlertNoHandlerOptions
   ): Promise<{ title: string; index: number }>;
+  alert(options: UiTypes.UIAlertOptions | string): void;
   action(options: UiTypes.UIAlertOptions | string): void;
   action(
     options: UiTypes.UIAlertNoHandlerOptions
