@@ -28,7 +28,7 @@ interface File {
   download(path: string): Promise<NSData>;
   write(object: FileTypes.FileWriteObject): boolean;
   delete(path: string): boolean;
-  list(path: string): string[];
+  list(path: string): string[] | undefined;
   copy(object: FileTypes.FileCopyMoveObject): boolean;
   move(object: FileTypes.FileCopyMoveObject): boolean;
   mkdir(path: string): boolean;
