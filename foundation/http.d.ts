@@ -105,6 +105,7 @@ namespace HttpTypes {
   }
 
   interface UploadOptions extends HttpRequestOptions {
+    showsProgress?: boolean; // 是否显示进度条
     message?: string; // upload/download 中的提示语
     progress?: (percentage: number) => void;
   }

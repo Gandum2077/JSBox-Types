@@ -11,6 +11,12 @@
   ]
 ```
 
+## 安装
+
+```
+npm i jsbox-cviews
+```
+
 ## 命名规则
 
 对于 Objective-C 封装成的对象，直接使用 Objective-C 的类名、或者模仿其风格来命名接口，
