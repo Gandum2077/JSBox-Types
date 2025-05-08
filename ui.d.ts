@@ -29,26 +29,26 @@ declare namespace UiTypes {
     image?: UIImage;
     icon?: string;
     symbol?: string;
-    menu?: ContextMenuOptions;
-    handler: (sender: UIView) => void;
+    menu?: ContextMenuOptions<UIView>;
+    handler: (sender: T) => void;
     // 此处sender为UIButtonBarButton，不单独定义了
   }
 
-  interface ContextMenuOptions {
+  interface ContextMenuOptions<T extends AllUIView> {
     title?: string;
     pullDown?: boolean;
     // Pull-Down 菜单，短按触发，不会背景模糊。navButton上必为Pull-Down 菜单
     asPrimary?: boolean; // 是否短按触发
-    items: ContextMenuSubItem[];
+    items: ContextMenuSubItem<T>[];
   }
 
-  interface ContextMenuSubItem {
+  interface ContextMenuSubItem<T extends AllUIView> {
     title?: string;
     symbol?: string;
     destructive?: boolean;
-    handler?: (sender: AllUIView, indexPath: NSIndexPath) => void;
+    handler?: (sender: T, indexPath: NSIndexPath) => void;
     // 此处sender为来源View
-    items?: ContextMenuSubItem[]; // 二级菜单
+    items?: ContextMenuSubItem<T>[]; // 二级菜单
     inline?: boolean; // 二级菜单是否直接显示到当前菜单
   }
 
@@ -605,6 +605,7 @@ declare namespace UiTypes {
       color?: UIColor;
       handler: (sender: UIListView, indexPath: NSIndexPath) => void;
     }[];
+    menu?: ContextMenuOptions<UIListView>;
   }
 
   interface ListEvents extends ScrollEvents<UIListView> {
@@ -651,6 +652,7 @@ declare namespace UiTypes {
     header?: AllViewOptions;
     footer?: AllViewOptions;
     reorder?: boolean;
+    menu?: ContextMenuOptions<UIMatrixView>;
   }
 
   interface MatrixEvents extends ScrollEvents<UIMatrixView> {
