@@ -86,8 +86,6 @@ declare namespace UiTypes {
     accessibilityHint?: string;
     accessibilityValue?: string;
     accessibilityCustomActions?: UIAccessibilityCustomAction[];
-
-    menu?: ContextMenuOptions;
   }
 
   interface BaseViewEvents<T = UIBaseView> {
@@ -163,9 +161,13 @@ declare namespace UiTypes {
     events?: RootViewEvents;
   }
 
+  interface ViewProps extends BaseViewProps {
+    menu?: ContextMenuOptions<UIView>;
+  }
+
   interface ViewOptions extends BaseViewOptions {
     type: "view";
-    props: BaseViewProps;
+    props: ViewProps;
     layout?: (make: MASConstraintMaker, view: UIView) => void;
     events?: BaseViewEvents;
   }
@@ -180,6 +182,7 @@ declare namespace UiTypes {
     lines?: number;
     autoFontSize?: boolean;
     lineSpacing?: number; // 文档中缺少但实际上存在，表示行间距
+    menu?: ContextMenuOptions<UILabelView>;
   }
 
   interface LabelOptions extends BaseViewOptions {
@@ -207,6 +210,7 @@ declare namespace UiTypes {
     titleEdgeInsets?: JBInsets;
     imageEdgeInsets?: JBInsets;
     enabled?: boolean; // 文档上缺少但实际存在，表示是否可用
+    menu?: ContextMenuOptions<UIButtonView>;
   }
 
   interface ButtonOptions extends BaseViewOptions {
@@ -231,6 +235,7 @@ declare namespace UiTypes {
     secure?: boolean; // 是否密码框
     keyboardView?: AllViewOptions;
     accessoryView?: AllViewOptions;
+    menu?: ContextMenuOptions<UIInputView>;
   }
 
   interface InputEvents extends BaseViewEvents<UIInputView> {
@@ -255,6 +260,7 @@ declare namespace UiTypes {
     minColor?: UIColor;
     maxColor?: UIColor;
     thumbColor?: UIColor;
+    menu?: ContextMenuOptions<UISliderView>;
   }
 
   interface SliderEvents extends BaseViewEvents<UISliderView> {
@@ -272,6 +278,7 @@ declare namespace UiTypes {
     on?: boolean;
     onColor?: UIColor; // 开启时颜色
     thumbColor?: UIColor; // 滑块颜色
+    menu?: ContextMenuOptions<UISwitchView>;
   }
 
   interface SwitchEvents extends BaseViewEvents<UISwitchView> {
@@ -289,6 +296,7 @@ declare namespace UiTypes {
     loading?: boolean; // 是否加载中
     color?: UIColor;
     style?: number; // 0 ~ 2 表示样式
+    menu?: ContextMenuOptions<UISpinnerView>;
   }
 
   interface SpinnerOptions extends BaseViewOptions {
@@ -302,6 +310,7 @@ declare namespace UiTypes {
     value?: number;
     progressColor?: UIColor; // 已走进度的颜色
     trackColor?: UIColor; // 进度条背景色
+    menu?: ContextMenuOptions<UIProgressView>;
   }
 
   interface ProgressOptions extends BaseViewOptions {
@@ -316,6 +325,7 @@ declare namespace UiTypes {
     page?: number; // 当前页数
     interval?: number; // 自动播放间隔，为 0 表示不播放
     // pageControl?: UIView;
+    menu?: ContextMenuOptions<UIGalleryView>;
   }
 
   interface GalleryEvents extends BaseViewEvents<UIGalleryView> {
@@ -336,6 +346,7 @@ declare namespace UiTypes {
     step?: number;
     autorepeat?: boolean; // 响应长按
     continuous?: boolean; // 连续响应事件
+    menu?: ContextMenuOptions<UIStepperView>;
   }
 
   interface StepperEvents extends BaseViewEvents<UIStepperView> {
@@ -365,6 +376,7 @@ declare namespace UiTypes {
     insets?: JBInsets;
     accessoryView?: AllViewOptions;
     keyboardView?: AllViewOptions;
+    menu?: ContextMenuOptions<UITextView>;
   }
 
   interface TextEvents<T3 = UITextView> extends ScrollEvents<T3> {
@@ -392,6 +404,7 @@ declare namespace UiTypes {
     symbol?: string; // SF symbols 名称
     data?: NSData;
     icon?: BBFileIcon;
+    menu?: ContextMenuOptions<UIImageView>;
   }
 
   interface ImageOptions extends BaseViewOptions {
@@ -404,6 +417,7 @@ declare namespace UiTypes {
   interface VideoProps extends BaseViewProps {
     src: string; // url，如果需要本地路径必须是local://开头
     poster?: string; // 封面图
+    menu?: ContextMenuOptions<UIVideoView>;
   }
 
   interface VideoOptions extends BaseViewOptions {
@@ -432,6 +446,7 @@ declare namespace UiTypes {
     zoomEnabled?: boolean; // 以下是为了创建支持双指缩放的图片
     maxZoomScale?: number; // 最大缩放比例，默认2
     doubleTapToZoom?: boolean; // 双击放大，默认true
+    menu?: ContextMenuOptions<UIScrollView>;
   }
 
   interface ScrollEvents<T2 = UIScrollView> extends BaseViewEvents<T2> {
@@ -467,6 +482,7 @@ declare namespace UiTypes {
     // 文档中属性名写错了，不是isBaselineRelative
     layoutMarginsRelative?: boolean;
     // 文档中属性名写错了，不是isLayoutMarginsRelative
+    menu?: ContextMenuOptions<UIStackView>;
   }
 
   interface StackOptions extends BaseViewOptions {
@@ -479,6 +495,7 @@ declare namespace UiTypes {
   interface TabProps extends BaseViewProps {
     items?: string[];
     index?: number; // 初始选中
+    menu?: ContextMenuOptions<UITabView>;
   }
 
   interface TabEvents extends BaseViewEvents<UITabView> {
@@ -496,6 +513,7 @@ declare namespace UiTypes {
     items?: string[];
     index?: number; // 初始选中
     dynamicWidth?: boolean; // dynamic item width, default is false
+    menu?: ContextMenuOptions<UIMenuView>;
   }
 
   interface MenuEvents extends BaseViewEvents<UIMenuView> {
@@ -514,6 +532,7 @@ declare namespace UiTypes {
       lat: number;
       lng: number;
     };
+    menu?: ContextMenuOptions<UIMapView>;
   }
 
   interface MapOptions extends BaseViewOptions {
@@ -550,6 +569,7 @@ declare namespace UiTypes {
     allowsLinkPreview?: boolean;
     script?: string | (() => void);
     style?: string;
+    menu?: ContextMenuOptions<UIWebView>;
   }
 
   interface WebEvents<T2 = UIWebView> extends BaseViewEvents<T2> {
@@ -685,6 +705,7 @@ declare namespace UiTypes {
 
   interface BlurProps extends BaseViewProps {
     style?: number; // $blurStyle
+    menu?: ContextMenuOptions<UIBlurView>;
   }
 
   interface BlurOptions extends BaseViewOptions {
@@ -699,6 +720,7 @@ declare namespace UiTypes {
     locations?: number[];
     startPoint?: JBPoint;
     endPoint?: JBPoint;
+    menu?: ContextMenuOptions<UIGradientView>;
   }
 
   interface GradientOptions extends BaseViewOptions {
@@ -714,6 +736,7 @@ declare namespace UiTypes {
     max?: Date;
     mode?: number; // 参考Apple文档
     interval?: number;
+    menu?: ContextMenuOptions<UIDatePickerView>;
   }
 
   interface DatePickerEvents extends BaseViewEvents<UIDatePickerView> {
@@ -729,6 +752,7 @@ declare namespace UiTypes {
 
   interface PickerProps extends BaseViewProps {
     items: any;
+    menu?: ContextMenuOptions<UIPickerView>;
   }
 
   interface PickerEvents extends BaseViewEvents<UIPickerView> {
@@ -742,13 +766,17 @@ declare namespace UiTypes {
     events?: PickerEvents;
   }
 
+  interface CanvasProps extends BaseViewProps {
+    menu?: ContextMenuOptions<UICanvasView>;
+  }
+
   interface CanvasEvents extends BaseViewEvents<UICanvasView> {
     draw?: (view: UICanvasView, ctx: BBCanvasContext) => void;
   }
 
   interface CanvasOptions extends BaseViewOptions {
     type: "canvas";
-    props: BaseViewProps;
+    props: CanvasProps;
     layout?: (make: MASConstraintMaker, view: UICanvasView) => void;
     events?: CanvasEvents;
   }
@@ -757,6 +785,7 @@ declare namespace UiTypes {
     content?: string;
     style?: string;
     scrollEnabled?: boolean;
+    menu?: ContextMenuOptions<UIMarkdownView>;
   }
 
   interface MarkdownOptions extends BaseViewOptions {
@@ -777,6 +806,7 @@ declare namespace UiTypes {
     frameIndex?: number; // 播放帧数
     speed?: number;
     // duration?: number;
+    menu?: ContextMenuOptions<UILottieView>;
   }
 
   interface LottieOptions extends BaseViewOptions {
@@ -788,6 +818,7 @@ declare namespace UiTypes {
 
   interface ChartProps extends WebProps {
     options?: any; // options 支持的参数请参考 ECharts 文档
+    menu?: ContextMenuOptions<UIChartView>;
   }
 
   interface ChartEvents extends WebEvents<UIChartView> {
@@ -811,6 +842,7 @@ declare namespace UiTypes {
     invisibles?: boolean; // 是否显示不可见字符
     linePadding?: number; // 行高
     keys?: string[]; // 自定义键盘，与accessoryView冲突
+    menu?: ContextMenuOptions<UICodeView>;
   }
 
   interface CodeOptions extends BaseViewOptions {
