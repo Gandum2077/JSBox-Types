@@ -1,6 +1,6 @@
 {
   "name": "jsbox-types",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "TypeScript declaration files for JSBox.",
   "repository": {
     "type": "git",
