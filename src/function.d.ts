@@ -21,7 +21,7 @@ declare function $data(content: { string: string; encoding?: number }): NSData;
 declare function $data(content: { path: string }): NSData;
 declare function $data(content: { url: string }): NSData;
 declare function $data(content: { base64: string }): NSData;
-declare function $data(content: { byteArray: number[] }): NSData;
+declare function $data(content: { byteArray: number[] | Uint8Array }): NSData;
 declare function $image(source: string, scale?: number): UIImage;
 declare function $image(lightModeSource: string | UIImage, darkModeSource: string | UIImage): UIImage;
 declare function $image(source: { light: string | UIImage; dark: string | UIImage }, scale?: number): UIImage;
