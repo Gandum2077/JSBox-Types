@@ -53,6 +53,7 @@ declare namespace UiTypes {
     interface BaseViewProps {
         id?: string;
         height?: number; // Only applies to accessoryView, keyboardView, header, footer
+        width?: number; // Only effective in header and footer of horizontal matrix view
         selectable?: boolean; // Only applies to static cells in UIListView
 
         theme?: string;
