@@ -298,24 +298,19 @@ declare const $widgetFamily: {
     /** Available from iPadOS 15 */
     xLarge: 3;
     /**
-     * This value is WRONG.
-     * 
-     * BUG: Up to version 2.32.0, $widget.family actually returns 6, 7, and 8
-     * for the circular, rectangular, and inline variants, respectively.
+     * JSBox 2.32.0 exposes this legacy value as 5.
+     * On iOS 26 or later, $widget.family and ctx.family return 6
+     * because WidgetFamily raw values changed.
      */
     accessoryCircular: 5;
     /**
-     * This value is WRONG.
-     * 
-     * BUG: Up to version 2.32.0, $widget.family actually returns 6, 7, and 8
-     * for the circular, rectangular, and inline variants, respectively.
+     * JSBox 2.32.0 exposes this legacy value as 6.
+     * On iOS 26 or later, $widget.family and ctx.family return 7.
      */
     accessoryRectangular: 6;
     /**
-     * This value is WRONG.
-     * 
-     * BUG: Up to version 2.32.0, $widget.family actually returns 6, 7, and 8
-     * for the circular, rectangular, and inline variants, respectively.
+     * JSBox 2.32.0 exposes this legacy value as 7.
+     * On iOS 26 or later, $widget.family and ctx.family return 8.
      */
     accessoryInline: 7;
 };

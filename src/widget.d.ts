@@ -1,6 +1,16 @@
 // JSBox Widget API TypeScript Declaration
 
 declare namespace WidgetTypes {
+    type WidgetFamily =
+    | 0 // small
+    | 1 // medium
+    | 2 // large
+    | 3 // xLarge
+    | 5 // accessoryCircular before iOS 26
+    | 6 // accessoryRectangular before iOS 26 / circular since iOS 26
+    | 7 // accessoryInline before iOS 26 / rectangular since iOS 26
+    | 8; // accessoryInline since iOS 26
+
     interface WidgetEntry {
         date?: Date;
         info?: any;
@@ -19,13 +29,7 @@ declare namespace WidgetTypes {
 
     interface WidgetContext {
         entry: WidgetEntry;
-        /**
-         * $widgetFamily
-         *
-         * BUG: Up to version 2.32.0, $widget.family actually returns 6, 7, and 8
-         * for the circular, rectangular, and inline variants, respectively.
-         */
-        family: number;
+        family: WidgetFamily;
         displaySize: JBSize;
         isDarkMode: boolean;
     }
@@ -145,8 +149,9 @@ declare namespace WidgetTypes {
             }
             | {
                 date: Date;
-                /** $widget.dateStyle, or string literals */
-                style: number | string;
+                style: 
+                    | (typeof $widget.dateStyle)[keyof typeof $widget.dateStyle]
+                    | keyof typeof $widget.dateStyle;
             }
             | {
                 /** display a time interval */
@@ -243,8 +248,9 @@ declare namespace WidgetTypes {
     }
 
     interface HstackProps extends BasePropsModifiers {
-        /** $widget.verticalAlignment, or string literals */
-        alignment?: number | string;
+        alignment?: 
+            | (typeof $widget.verticalAlignment)[keyof typeof $widget.verticalAlignment]
+            | keyof typeof $widget.verticalAlignment;
         spacing?: number;
     }
 
@@ -255,8 +261,9 @@ declare namespace WidgetTypes {
     }
 
     interface VstackProps extends BasePropsModifiers {
-        /** $widget.horizontalAlignment, or string literals */
-        alignment?: number | string;
+        alignment?:
+            | (typeof $widget.horizontalAlignment)[keyof typeof $widget.horizontalAlignment]
+            | keyof typeof $widget.horizontalAlignment;
         spacing?: number;
     }
 
@@ -267,8 +274,9 @@ declare namespace WidgetTypes {
     }
 
     interface ZstackProps extends BasePropsModifiers {
-        /** $widget.alignment, or string literals */
-        alignment?: number | string;
+        alignment?:
+            | (typeof $widget.alignment)[keyof typeof $widget.alignment]
+            | keyof typeof $widget.alignment;
     }
 
     interface WidgetZstackOptions extends WidgetBaseOptions {
@@ -298,13 +306,15 @@ declare namespace WidgetTypes {
             maximum: number;
         };
         spacing?: number;
-        /** $widget.alignment, or string literals */
-        alignment?: number | string;
+        alignment?: 
+            | (typeof $widget.alignment)[keyof typeof $widget.alignment]
+            | keyof typeof $widget.alignment;
     }
 
     interface HgridProps extends BasePropsModifiers {
-        /** $widget.verticalAlignment, or string literals */
-        alignment?: number | string;
+        alignment?: 
+            | (typeof $widget.verticalAlignment)[keyof typeof $widget.verticalAlignment]
+            | keyof typeof $widget.verticalAlignment;
         spacing?: number;
         rows?: GridItems[];
     }
@@ -316,8 +326,9 @@ declare namespace WidgetTypes {
     }
 
     interface VgridProps extends BasePropsModifiers {
-        /** $widget.horizontalAlignment, or string literals */
-        alignment?: number | string;
+        alignment?:
+            | (typeof $widget.horizontalAlignment)[keyof typeof $widget.horizontalAlignment]
+            | keyof typeof $widget.horizontalAlignment;
         spacing?: number;
         columns?: GridItems[];
     }
@@ -330,22 +341,16 @@ declare namespace WidgetTypes {
 }
 
 interface JBWidget {
-    /** The following 3 APIs are deprecated. They belong to iOS Today Widgets. */
+    // The following 3 APIs belong to iOS Today Widgets.
     height: number;
     /** 0: less 1: more. */
-    mode: number;
-    modeChanged: (mode: number) => void;
+    mode: 0 | 1;
+    modeChanged: (mode: 0 | 1) => void;
 
     setTimeline(args: WidgetTypes.WidgetOptions | WidgetTypes.WidgetOptions["render"]): void;
     reloadTimeline(): void;
     inputValue: string;
-    /**
-     * $widgetFamily
-     *
-     * BUG: Up to version 2.32.0, $widget.family actually returns 6, 7, and 8
-     * for the circular, rectangular, and inline variants, respectively.
-     */
-    family: number;
+    family: WidgetFamily;
     displaySize: JBSize;
     isDarkMode: boolean;
     alignment: {
