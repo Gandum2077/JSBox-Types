@@ -36,10 +36,10 @@ interface JBBasicValue {
 interface NSError extends JBBasicValue {
     code: number;
     domain: string;
-    userInfo: any;
+    userInfo: Record<string, any>;
     localizedDescription: string;
-    localizedFailureReason: string;
-    localizedRecoverySuggestion: string;
+    localizedFailureReason?: string;
+    localizedRecoverySuggestion?: string;
 }
 
 interface MASConstraintMaker extends JBBasicValue {
