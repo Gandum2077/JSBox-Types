@@ -295,13 +295,28 @@ declare const $widgetFamily: {
     small: 0;
     medium: 1;
     large: 2;
-    xLarge: 3; // iPadOS 15
-
-    // iOS 16 lock screen sizes
-    // BUG: Up to version 2.32.0, $widget.family actually returns 6, 7, and 8
-    // for the circular, rectangular, and inline variants, respectively.
+    /** Available from iPadOS 15 */
+    xLarge: 3;
+    /**
+     * This value is WRONG.
+     * 
+     * BUG: Up to version 2.32.0, $widget.family actually returns 6, 7, and 8
+     * for the circular, rectangular, and inline variants, respectively.
+     */
     accessoryCircular: 5;
+    /**
+     * This value is WRONG.
+     * 
+     * BUG: Up to version 2.32.0, $widget.family actually returns 6, 7, and 8
+     * for the circular, rectangular, and inline variants, respectively.
+     */
     accessoryRectangular: 6;
+    /**
+     * This value is WRONG.
+     * 
+     * BUG: Up to version 2.32.0, $widget.family actually returns 6, 7, and 8
+     * for the circular, rectangular, and inline variants, respectively.
+     */
     accessoryInline: 7;
 };
 

@@ -160,8 +160,8 @@ interface JBHttp {
 
     startServer(options: { port: number; path: string; handler: (result: HttpTypes.ServerResult) => void }): void;
     stopServer(): void;
+    /** @deprecated */
     shorten(options: { url: string; handler: (url: string) => void }): void;
-    // shorten: deprecated
     lengthen(options: { url: string; handler: (url: string) => void }): void;
     lengthen(options: { url: string }): Promise<string>;
 }

@@ -13,12 +13,12 @@ declare namespace PdfTypes {
         };
 
     type PDFMakeOptions = {
-        pageSize?: number; // The value is in $pageSize
+        pageSize?: typeof $pageSize;
         handler: (resp: { data: NSData }) => void;
     } & PDFMakeInput;
 
     type PDFMakePromiseOptions = {
-        pageSize?: number; // The value is in $pageSize
+        pageSize?: typeof $pageSize;
     } & PDFMakeInput;
 }
 

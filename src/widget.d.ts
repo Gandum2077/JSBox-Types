@@ -19,9 +19,13 @@ declare namespace WidgetTypes {
 
     interface WidgetContext {
         entry: WidgetEntry;
-        family: number; // $widgetFamily
-        // BUG: Up to version 2.32.0, $widget.family actually returns 6, 7, and 8
-        // for the circular, rectangular, and inline variants, respectively.
+        /**
+         * $widgetFamily
+         *
+         * BUG: Up to version 2.32.0, $widget.family actually returns 6, 7, and 8
+         * for the circular, rectangular, and inline variants, respectively.
+         */
+        family: number;
         displaySize: JBSize;
         isDarkMode: boolean;
     }
@@ -83,7 +87,8 @@ declare namespace WidgetTypes {
             | number
             | {
                 value: number;
-                style: 0 | 1; // 0: circular, 1: continuous
+                /** 0: circular, 1: continuous */
+                style: 0 | 1;
             };
         border?: {
             color?: UIColor;
@@ -91,7 +96,8 @@ declare namespace WidgetTypes {
         };
         clipped?: boolean | { antialiased: boolean };
         opacity?: number;
-        rotationEffect?: number; // Arc angle
+        /** Arc angle */
+        rotationEffect?: number;
         blur?: number;
         color?: UIColor | string;
         background?: UIColor | UIImage | WidgetImageOptions | WidgetGradientOptions;
@@ -139,10 +145,12 @@ declare namespace WidgetTypes {
             }
             | {
                 date: Date;
-                style: number | string; // $widget.dateStyle, or string literals
+                /** $widget.dateStyle, or string literals */
+                style: number | string;
             }
             | {
-                startDate: Date; // display a time interval
+                /** display a time interval */
+                startDate: Date;
                 endDate: Date;
             }
         );
@@ -167,7 +175,9 @@ declare namespace WidgetTypes {
                     | string
                     | {
                         glyph: string;
-                        size: number; // Default: 24
+                        /** Default: 24 */
+                        size: number;
+                        /** Default: "regular" */
                         weight:
                             | "ultraLight"
                             | "thin"
@@ -177,14 +187,15 @@ declare namespace WidgetTypes {
                             | "semibold"
                             | "bold"
                             | "heavy"
-                            | "black"; // Default: "regular"
+                            | "black";
                     };
             }
             | {
                 path: string;
             }
             | {
-                uri: string; // URL or Base64
+                /** URL or Base64 */
+                uri: string;
             }
         );
 
@@ -232,7 +243,8 @@ declare namespace WidgetTypes {
     }
 
     interface HstackProps extends BasePropsModifiers {
-        alignment?: number | string; // $widget.verticalAlignment, or string literals
+        /** $widget.verticalAlignment, or string literals */
+        alignment?: number | string;
         spacing?: number;
     }
 
@@ -243,7 +255,8 @@ declare namespace WidgetTypes {
     }
 
     interface VstackProps extends BasePropsModifiers {
-        alignment?: number | string; // $widget.horizontalAlignment, or string literals
+        /** $widget.horizontalAlignment, or string literals */
+        alignment?: number | string;
         spacing?: number;
     }
 
@@ -254,7 +267,8 @@ declare namespace WidgetTypes {
     }
 
     interface ZstackProps extends BasePropsModifiers {
-        alignment?: number | string; // $widget.alignment, or string literals
+        /** $widget.alignment, or string literals */
+        alignment?: number | string;
     }
 
     interface WidgetZstackOptions extends WidgetBaseOptions {
@@ -284,11 +298,13 @@ declare namespace WidgetTypes {
             maximum: number;
         };
         spacing?: number;
-        alignment?: number | string; // $widget.alignment, or string literals
+        /** $widget.alignment, or string literals */
+        alignment?: number | string;
     }
 
     interface HgridProps extends BasePropsModifiers {
-        alignment?: number | string; // $widget.verticalAlignment, or string literals
+        /** $widget.verticalAlignment, or string literals */
+        alignment?: number | string;
         spacing?: number;
         rows?: GridItems[];
     }
@@ -300,7 +316,8 @@ declare namespace WidgetTypes {
     }
 
     interface VgridProps extends BasePropsModifiers {
-        alignment?: number | string; // $widget.horizontalAlignment, or string literals
+        /** $widget.horizontalAlignment, or string literals */
+        alignment?: number | string;
         spacing?: number;
         columns?: GridItems[];
     }
@@ -313,17 +330,22 @@ declare namespace WidgetTypes {
 }
 
 interface JBWidget {
-    // The following 3 APIs are deprecated. They belong to iOS Today Widgets.
+    /** The following 3 APIs are deprecated. They belong to iOS Today Widgets. */
     height: number;
-    mode: number; // 0: less 1: more.
+    /** 0: less 1: more. */
+    mode: number;
     modeChanged: (mode: number) => void;
 
     setTimeline(args: WidgetTypes.WidgetOptions | WidgetTypes.WidgetOptions["render"]): void;
     reloadTimeline(): void;
     inputValue: string;
-    family: number; // $widgetFamily
-    // BUG: Up to version 2.32.0, $widget.family actually returns 6, 7, and 8
-    // for the circular, rectangular, and inline variants, respectively.
+    /**
+     * $widgetFamily
+     *
+     * BUG: Up to version 2.32.0, $widget.family actually returns 6, 7, and 8
+     * for the circular, rectangular, and inline variants, respectively.
+     */
+    family: number;
     displaySize: JBSize;
     isDarkMode: boolean;
     alignment: {
