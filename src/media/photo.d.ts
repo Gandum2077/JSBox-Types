@@ -223,7 +223,7 @@ declare namespace PhotoTypes {
     interface DeleteOptions extends FetchOptionsBase {
         /** @default 1 */
         count?: number;
-        format?: PhotoFormat;
+        // format?: PhotoFormat; // no practical effect
         handler?: (success: boolean) => void;
     }
 }
