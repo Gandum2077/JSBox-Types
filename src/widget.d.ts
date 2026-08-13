@@ -2,14 +2,14 @@
 
 declare namespace WidgetTypes {
     type WidgetFamily =
-    | 0 // small
-    | 1 // medium
-    | 2 // large
-    | 3 // xLarge
-    | 5 // accessoryCircular before iOS 26
-    | 6 // accessoryRectangular before iOS 26 / circular since iOS 26
-    | 7 // accessoryInline before iOS 26 / rectangular since iOS 26
-    | 8; // accessoryInline since iOS 26
+        | 0 // small
+        | 1 // medium
+        | 2 // large
+        | 3 // xLarge
+        | 5 // accessoryCircular before iOS 26
+        | 6 // accessoryRectangular before iOS 26 / circular since iOS 26
+        | 7 // accessoryInline before iOS 26 / rectangular since iOS 26
+        | 8; // accessoryInline since iOS 26
 
     interface WidgetEntry {
         date?: Date;
@@ -149,7 +149,7 @@ declare namespace WidgetTypes {
             }
             | {
                 date: Date;
-                style: 
+                style:
                     | (typeof $widget.dateStyle)[keyof typeof $widget.dateStyle]
                     | keyof typeof $widget.dateStyle;
             }
@@ -248,7 +248,7 @@ declare namespace WidgetTypes {
     }
 
     interface HstackProps extends BasePropsModifiers {
-        alignment?: 
+        alignment?:
             | (typeof $widget.verticalAlignment)[keyof typeof $widget.verticalAlignment]
             | keyof typeof $widget.verticalAlignment;
         spacing?: number;
@@ -306,13 +306,13 @@ declare namespace WidgetTypes {
             maximum: number;
         };
         spacing?: number;
-        alignment?: 
+        alignment?:
             | (typeof $widget.alignment)[keyof typeof $widget.alignment]
             | keyof typeof $widget.alignment;
     }
 
     interface HgridProps extends BasePropsModifiers {
-        alignment?: 
+        alignment?:
             | (typeof $widget.verticalAlignment)[keyof typeof $widget.verticalAlignment]
             | keyof typeof $widget.verticalAlignment;
         spacing?: number;
@@ -350,7 +350,7 @@ interface JBWidget {
     setTimeline(args: WidgetTypes.WidgetOptions | WidgetTypes.WidgetOptions["render"]): void;
     reloadTimeline(): void;
     inputValue: string;
-    family: WidgetFamily;
+    family: WidgetTypes.WidgetFamily;
     displaySize: JBSize;
     isDarkMode: boolean;
     alignment: {

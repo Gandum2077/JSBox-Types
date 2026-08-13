@@ -79,7 +79,7 @@ declare namespace UiTypes {
         clipsToBounds?: boolean;
         opaque?: boolean;
         hidden?: boolean;
-        contentMode?: typeof $contentMode;
+        contentMode?: (typeof $contentMode)[keyof typeof $contentMode];
         tintColor?: UIColor;
         borderWidth?: number;
         borderColor?: UIColor;
@@ -182,7 +182,7 @@ declare namespace UiTypes {
         font?: UIFont;
         textColor?: UIColor;
         shadowColor?: UIColor;
-        align?: typeof $align;
+        align?: (typeof $align)[keyof typeof $align];
         lines?: number;
         autoFontSize?: boolean;
         /** Not documented but actually exists. */
@@ -210,7 +210,7 @@ declare namespace UiTypes {
         symbol?: string;
         image?: UIImage;
         icon?: BBFileIcon;
-        type?: typeof $btnType;
+        type?: (typeof $btnType)[keyof typeof $btnType];
         contentEdgeInsets?: JBInsets;
         titleEdgeInsets?: JBInsets;
         imageEdgeInsets?: JBInsets;
@@ -227,13 +227,13 @@ declare namespace UiTypes {
     }
 
     interface InputProps extends BaseViewProps {
-        type?: typeof $kbType;
+        type?: (typeof $kbType)[keyof typeof $kbType];
         darkKeyboard?: boolean;
         text?: string;
         styledText?: StyledTextOptions;
         textColor?: UIColor;
         font?: UIFont;
-        align?: typeof $align;
+        align?: (typeof $align)[keyof typeof $align];
         placeholder?: string;
         clearsOnBeginEditing?: boolean;
         autoFontSize?: boolean;
@@ -301,9 +301,9 @@ declare namespace UiTypes {
     interface SpinnerProps extends BaseViewProps {
         loading?: boolean;
         color?: UIColor;
-        /** 
-         * 0: large, 1: medium, 2: medium, default 1 
-         * 
+        /**
+         * 0: large, 1: medium, 2: medium, default 1
+         *
          * Note: 1 and 2 have the same effect due to iOS API change.
          */
         style?: 0 | 1 | 2;
@@ -375,11 +375,11 @@ declare namespace UiTypes {
         text?: string;
         styledText?: string | StyledTextOptions;
         html?: string;
-        type?: typeof $kbType;
+        type?: (typeof $kbType)[keyof typeof $kbType];
         darkKeyboard?: boolean;
         font?: UIFont;
         textColor?: UIColor;
-        align?: typeof $align;
+        align?: (typeof $align)[keyof typeof $align];
         placeholder?: string;
         selectedRange?: JBRange;
         editable?: boolean;
@@ -483,10 +483,10 @@ declare namespace UiTypes {
 
     interface StackProps extends BaseViewProps {
         stack: { views: AllViewOptions[] };
-        axis?: typeof $stackViewAxis;
-        distribution?: typeof $stackViewDistribution;
-        alignment?: typeof $stackViewAlignment;
-        spacing?: typeof $stackViewSpacing;
+        axis?: (typeof $stackViewAxis)[keyof typeof $stackViewAxis];
+        distribution?: (typeof $stackViewDistribution)[keyof typeof $stackViewDistribution];
+        alignment?: (typeof $stackViewAlignment)[keyof typeof $stackViewAlignment];
+        spacing?: (typeof $stackViewSpacing)[keyof typeof $stackViewSpacing];
         /** BUG: The property name in the documentation is incorrect; it is not `isBaselineRelative`. */
         baselineRelative?: boolean;
         /** BUG: The property name in the documentation is incorrect; it is not `isLayoutMarginsRelative`. */
@@ -664,7 +664,7 @@ declare namespace UiTypes {
         columns?: number;
         itemHeight?: number;
         square?: boolean;
-        direction?: typeof $scrollDirection;
+        direction?: (typeof $scrollDirection)[keyof typeof $scrollDirection];
         selectable?: boolean;
         waterfall?: boolean;
         /**
@@ -702,7 +702,7 @@ declare namespace UiTypes {
     }
 
     interface BlurProps extends BaseViewProps {
-        style?: typeof $blurStyle;
+        style?: (typeof $blurStyle)[keyof typeof $blurStyle];
         menu?: ContextMenuOptions<UIBlurView>;
     }
 
@@ -973,7 +973,7 @@ declare namespace UiTypes {
         /** sender.bounds by default */
         sourceRect?: JBRect;
         /** $popoverDirection.up by default */
-        directions?: typeof $popoverDirection;
+        directions?: (typeof $popoverDirection)[keyof typeof $popoverDirection];
         /** fits content by default */
         size?: JBSize;
         items: string[];
@@ -985,7 +985,7 @@ declare namespace UiTypes {
         /** sender.bounds by default */
         sourceRect?: JBRect;
         /** $popoverDirection.any by default */
-        directions?: typeof $popoverDirection;
+        directions?: (typeof $popoverDirection)[keyof typeof $popoverDirection];
         /** fits screen width by default */
         size?: JBSize;
         views: AllViewOptions[];

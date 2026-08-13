@@ -18,10 +18,10 @@ declare namespace MessageTypes {
         body: string;
         isHTML?: boolean;
         attachments?: NSData[];
-        /** 
-         * 0: cancelled 1: saved 2: succeeded 3: failed 
-         * 
-         * This behavior was verified on a real device(Version 2.32.0). 
+        /**
+         * 0: cancelled 1: saved 2: succeeded 3: failed
+         *
+         * This behavior was verified on a real device(Version 2.32.0).
          * The English JSBox documentation is incorrect.
          */
         handler?: (result: 0 | 1 | 2 | 3) => void;

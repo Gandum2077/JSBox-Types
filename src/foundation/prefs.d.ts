@@ -1,6 +1,6 @@
 // JSBox Prefs API TypeScript Declaration
 
-declare namespace PrefsTypes {    
+declare namespace PrefsTypes {
     interface PrefsJson {
         title: string;
         groups: PrefsGroup[];

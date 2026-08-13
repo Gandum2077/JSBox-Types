@@ -348,7 +348,7 @@ interface UIButtonView extends UIBaseView {
     symbol?: string;
     image?: UIImage;
     icon?: BBFileIcon;
-    type: typeof $btnType;
+    type: (typeof $btnType)[keyof typeof $btnType];
     menu?: UIMenu;
     /** Not documented but actually exists. It indicates whether it is enabled */
     enabled: boolean;
@@ -362,13 +362,13 @@ interface UIButtonView extends UIBaseView {
 }
 
 interface UIInputView extends UIBaseView {
-    type: typeof $kbType;
+    type: (typeof $kbType)[keyof typeof $kbType];
     darkKeyboard?: boolean;
     text: string;
     styledText?: UiTypes.StyledTextOptions;
     textColor: UIColor;
     font: UIFont;
-    align: typeof $align;
+    align: (typeof $align)[keyof typeof $align];
     placeholder?: string;
     clearsOnBeginEditing: boolean;
     autoFontSize: boolean;
@@ -484,11 +484,11 @@ interface UITextView extends UIScrollView {
     text: string;
     styledText?: string | UiTypes.StyledTextOptions;
     html: string;
-    type: typeof $kbType;
+    type: (typeof $kbType)[keyof typeof $kbType];
     darkKeyboard: boolean;
     font: UIFont;
     textColor: UIColor;
-    align: typeof $align;
+    align: (typeof $align)[keyof typeof $align];
     placeholder: string;
     selectedRange: JBRange;
     editable: boolean;
@@ -571,10 +571,10 @@ interface UIScrollView extends UIBaseView {
 
 interface UIStackView extends UIBaseView {
     stack: BBStackViewStack;
-    axis: typeof $stackViewAxis;
-    distribution: typeof $stackViewDistribution;
-    alignment: typeof $stackViewAlignment;
-    spacing: typeof $stackViewSpacing;
+    axis: (typeof $stackViewAxis)[keyof typeof $stackViewAxis];
+    distribution: (typeof $stackViewDistribution)[keyof typeof $stackViewDistribution];
+    alignment: (typeof $stackViewAlignment)[keyof typeof $stackViewAlignment];
+    spacing: (typeof $stackViewSpacing)[keyof typeof $stackViewSpacing];
     baselineRelative: boolean;
     layoutMarginsRelative: boolean;
 }
@@ -677,7 +677,7 @@ interface UIListView extends UIScrollView {
     crossSections: boolean;
     hasActiveAction: boolean;
     // actions // not readable
-    /** Not documented but actually exists and important. */ 
+    /** Not documented but actually exists and important. */
     reload(): void;
     object(indexPath: NSIndexPath): any;
     insert(

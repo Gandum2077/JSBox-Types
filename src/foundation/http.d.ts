@@ -58,14 +58,16 @@ declare namespace HttpTypes {
         code: NSURLErrorDomain;
     }
 
-    type HttpFile = {
-        name: string;
-        filename?: string;
-        "content-type"?: string;
-    } & (
-        | { image: UIImage; data?: never }
-        | { image?: never; data: NSData }
-    );
+    type HttpFile =
+        & {
+            name: string;
+            filename?: string;
+            "content-type"?: string;
+        }
+        & (
+            | { image: UIImage; data?: never }
+            | { image?: never; data: NSData }
+        );
 
     interface HttpRequestOptions {
         method?: string;
